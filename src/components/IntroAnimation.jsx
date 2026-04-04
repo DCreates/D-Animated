@@ -8,7 +8,7 @@ export default function IntroAnimation({ onFinish }) {
 
   useEffect(() => {
     const t1 = setTimeout(() => setMove(true), 1200);
-    const t2 = setTimeout(() => onFinish(), 2800);
+    const t2 = setTimeout(() => onFinish(), 2000);
 
     return () => {
       clearTimeout(t1);
@@ -19,11 +19,11 @@ export default function IntroAnimation({ onFinish }) {
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
       <Motion.h1
-        initial={{ scale: 0.8, opacity: 0 }}
+        initial={{ scale: 1.8, opacity: 0 }}
         animate={
           move
             ? {
-                x: "-40vw",
+                x: "-35vw",
                 y: "-45vh",
                 scale: 0.5,
               }
@@ -39,7 +39,11 @@ export default function IntroAnimation({ onFinish }) {
         }}
         className="text-white text-5xl font-bold"
       >
-        D Create
+       <img
+          src="/images/l2.png"
+          alt="Globus Logo"
+          className="h-15 w-auto object-contain"
+        />
       </Motion.h1>
     </div>
   );

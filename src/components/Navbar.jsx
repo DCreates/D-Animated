@@ -63,8 +63,8 @@ const Navbar = () => {
       <div
         className={`w-[95%] max-w-[1420px] max-h-[50px] flex items-center justify-between px-7 py-3 rounded-3xl border transition-all duration-300 ${
           isScrolled
-            ? "bg-white/50 backdrop-blur-md shadow-md border-gray-200"
-            : "bg-white border-gray-300"
+            ? "bg-black/50 backdrop-blur-md shadow-md border-gray-200"
+            : "bg-black border-gray-900"
         }`}
       >
         {/* Logo */}
@@ -73,7 +73,7 @@ const Navbar = () => {
           className="text-2xl font-bold text-blue-600"
         >
         <img
-          src="/images/l3.png"
+          src="/images/l2.png"
           alt="Globus Logo"
           className="h-6 w-auto object-contain"
         />
