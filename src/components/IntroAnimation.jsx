@@ -4,47 +4,65 @@ import { useEffect, useState } from "react";
 const Motion = motion;
 
 export default function IntroAnimation({ onFinish }) {
-  const [move, setMove] = useState(false);
+  const [phase, setPhase] = useState("outline");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setMove(true), 1200);
-    const t2 = setTimeout(() => onFinish(), 2000);
+    const fillTimer = setTimeout(() => {
+      setPhase("fill");
+    }, 850);
+
+    const holdTimer = setTimeout(() => setPhase("hold"), 1800);
+    const endTimer = setTimeout(() => onFinish(), 2500);
 
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
+      clearTimeout(fillTimer);
+      clearTimeout(holdTimer);
+      clearTimeout(endTimer);
     };
   }, [onFinish]);
 
+  const isOutline = phase === "outline";
+  const shouldShowOutline = phase === "outline" || phase === "fill";
+  const shouldShowFill = phase !== "outline";
+
   return (
-    <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
-      <Motion.h1
-        initial={{ scale: 1.8, opacity: 0 }}
-        animate={
-          move
-            ? {
-                x: "-35vw",
-                y: "-45vh",
-                scale: 0.5,
-              }
-            : {
-                scale: 1,
-                opacity: 1,
-              }
-        }
-        transition={{
-          type: "spring",
-          stiffness: 80,
-          damping: 18,
-        }}
-        className="text-white text-5xl font-bold"
-      >
-       <img
-          src="/images/l2.png"
+    <Motion.div
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+    >
+      <div className="relative">
+        {/* <Motion.img
+          src="/images/DCreates.svg"
+          alt=""
+          aria-hidden="true"
+          className="absolute left-1/2 top-1/2 h-16 w-auto -translate-x-1/2 -translate-y-1/2 object-contain sm:h-20"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{
+            opacity: shouldShowOutline ? 1 : 0,
+            scale: isOutline ? [1, 1.03, 1] : 1,
+          }}
+          transition={{
+            opacity: { duration: 0.25, ease: "easeOut" },
+            scale: { duration: 0.65, ease: "easeInOut" },
+          }}
+          style={{
+            filter:
+              "brightness(0) saturate(0) invert(1) drop-shadow(0 0 0.8px rgba(255,255,255,0.95)) drop-shadow(0 0 12px rgba(255,255,255,0.2))",
+          }}
+        /> */}
+
+        <Motion.img
+          layoutId="brand-logo"
+          src="/images/DCreates.svg"
           alt="Globus Logo"
-          className="h-15 w-auto object-contain"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: shouldShowFill ? 1 : 0, scale: 1 }}
+          transition={{ opacity: { duration: 0.25 }, scale: { duration: 0.35 } }}
+          className="relative h-16 w-auto object-contain sm:h-20"
         />
-      </Motion.h1>
-    </div>
+      </div>
+    </Motion.div>
   );
 }

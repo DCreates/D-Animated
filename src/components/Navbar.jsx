@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { scrollToSection, useScrollSpy } from "../hook/useScrollSpy.js";
 import { NAV_LINKS } from "../utils/constants.js";
 
@@ -72,11 +73,13 @@ const Navbar = () => {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="text-2xl font-bold text-blue-600"
         >
-        <img
-          src="/images/l2.png"
-          alt="Globus Logo"
-          className="h-6 w-auto object-contain"
-        />
+          <motion.img
+            layoutId="brand-logo"
+            src="/images/DCreates.svg"
+            alt="Globus Logo"
+            transition={{ type: "spring", stiffness: 240, damping: 24 }}
+            className="h-6 w-auto object-contain"
+          />
         </button>
 
         {/* Desktop Menu */}
@@ -87,8 +90,8 @@ const Navbar = () => {
               onClick={() => handleNavClick(link.id)}
               className={`text-base font-medium transition-all duration-300 ${
                 activeSection === link.id
-                  ? "text-black"
-                  : "text-black/70 hover:text-blue-500"
+                  ? "text-white"
+                  : "text-white/50 hover:text-blue-500"
               }`}
             >
               {link.label}
@@ -100,7 +103,7 @@ const Navbar = () => {
         <div className="hidden md:flex">
           <button
             onClick={() => handleNavClick("contact")}
-            className="px-6 py-1 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold hover:opacity-90 transition"
+            className="px-6 py-1 rounded-full text-white font-semibold hover:opacity-90 transition"
           >
             Get in Touch
           </button>

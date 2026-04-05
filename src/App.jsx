@@ -1,24 +1,24 @@
 import { useState } from "react";
+import { AnimatePresence, LayoutGroup } from "framer-motion";
 import IntroAnimation from "./components/IntroAnimation";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [isIntroActive, setIsIntroActive] = useState(true);
 
   return (
-    <>
-      {showIntro && <IntroAnimation onFinish={() => setShowIntro(false)} />}
+    <LayoutGroup id="brand-logo-transition">
+      <Navbar />
+      <Home />
 
-      {!showIntro && (
-        <Navbar />
-      )}
-
-      {!showIntro && (
-        <Home />
-      )}
-    </>
+      <AnimatePresence>
+        {isIntroActive && (
+          <IntroAnimation onFinish={() => setIsIntroActive(false)} />
+        )}
+      </AnimatePresence>
+    </LayoutGroup>
   );
 }
 
