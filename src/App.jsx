@@ -11,7 +11,7 @@ function App() {
   return (
     <LayoutGroup id="brand-logo-transition">
       <Navbar />
-      <Home />
+      <Home introDone={!isIntroActive} />
 
       <AnimatePresence>
         {isIntroActive && (
