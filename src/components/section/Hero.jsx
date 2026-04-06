@@ -29,7 +29,7 @@ export default function Hero({ introDone = true }) {
     <div className="relative h-screen w-full bg-black text-white overflow-hidden flex items-center justify-center">
       {/* 🔵 Background Glow Effect */}
       <div className="absolute inset-0">
-        <div className="absolute w-[600px] h-[600px] bg-purple-500/20 blur-3xl rounded-full top-[-100px] left-[-100px]" />
+        <div className="absolute w-[600px] h-[600px] bg-blue-700/20 blur-3xl rounded-full top-[-100px] left-[-100px]" />
         <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-3xl rounded-full bottom-[-100px] right-[-100px]" />
       </div>
 
@@ -41,7 +41,11 @@ export default function Hero({ introDone = true }) {
         className="relative z-10 text-center px-6"
       >
         {/* Rating */}
-        <p className="text-sm text-gray-400 mb-4">★★★★★ 4.7 (1k+ Reviews)</p>
+        <p className="w-80 h-1.5mb-5  items-center gap-2 rounded-full border border-white/30 bg-white/10 px-1 py-1.5 text-xs font-medium tracking-wide text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] text-center justify-center flex mx-auto mb-8">
+          <span className="text-amber-300">★★★★★</span>
+          <span className="h-1 w-1 rounded-full bg-white/70" aria-hidden="true" />
+          <span>4.7 (1k+ Reviews)</span>
+        </p>
 
         {/* Title */}
         <div className="relative overflow-hidden inline-block">
@@ -64,11 +68,9 @@ export default function Hero({ introDone = true }) {
                 className="block"
                 transition={{ delayChildren: lineIndex * 0.2 }}
               >
-                {line.split("").map((char, charIndex) => (
+                {line.split("").map((char, ) => (
                   <Motion.span
-                    key={`${lineIndex}-${charIndex}-${char}`}
-                    variants={letterVariant}
-                    className="inline-block"
+                    // 
                   >
                     {char === " " ? "\u00A0" : char}
                   </Motion.span>
