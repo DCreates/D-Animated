@@ -19,10 +19,11 @@ export default function Partners() {
   ];
 
   return (
-    <div className="bg-black py-16 overflow-hidden">
+    <section className="bg-black px-6 py-16 sm:px-10 lg:px-16">
+      <div className="mx-auto w-full max-w-7xl overflow-hidden">
 
       {/* Title */}
-      <div className="mb-10 flex justify-center px-6">
+      <div className="mb-10 flex justify-center">
         <h2 className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-5 py-2 text-xs font-medium tracking-[0.18em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
           Trusted by our collaborators
         </h2>
@@ -49,6 +50,8 @@ export default function Partners() {
         </div>
 
       </div>
-    </div>
+
+      </div>
+    </section>
   );
 }

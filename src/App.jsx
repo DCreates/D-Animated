@@ -4,6 +4,7 @@ import IntroAnimation from "./components/IntroAnimation";
 import Partners from "./components/section/Partners";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 
@@ -16,7 +17,7 @@ function App() {
       <Home introDone={!isIntroActive} />
       <Partners />
       <About />
-
+      <Footer />
 
       <AnimatePresence>
         {isIntroActive && (
