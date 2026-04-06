@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion as Motion, useScroll, useTransform } from "framer-motion";
 
 //////////////////// FORMAT ////////////////////
 const formatNumber = (num, suffix) => {
@@ -52,17 +52,17 @@ const Counter = ({ target, suffix }) => {
 
 //////////////////// ABOUT ////////////////////
 export default function AboutSection() {
-  const stats = [
-    { label: "Clients", value: 120, suffix: "+" },
-    { label: "Satisfaction", value: 98, suffix: "%" },
-    { label: "Partners", value: 25, suffix: "+" },
-    { label: "Ratings", value: 4.9, suffix: "/5" },
-  ];
-
   // Parallax background
   const { scrollY } = useScroll();
   const bg1 = useTransform(scrollY, [0, 600], [0, 60]);
   const bg2 = useTransform(scrollY, [0, 600], [0, -40]);
+
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section
@@ -71,11 +71,11 @@ export default function AboutSection() {
     >
 
       {/* Soft Parallax Backgrounds */}
-      <motion.div
+      <Motion.div
         style={{ y: bg1 }}
         // className="absolute -left-44 -top-44 h-[620px] w-[620px] rounded-full bg-blue-600/20 blur-[170px]"
       />
-      <motion.div
+      <Motion.div
         style={{ y: bg2 }}
         // className="absolute -bottom-44 -right-44 h-[620px] w-[620px] rounded-full bg-cyan-500/20 blur-[170px]"
       />
@@ -83,7 +83,7 @@ export default function AboutSection() {
       <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:items-start">
 
         {/* LEFT SIDE */}
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -108,11 +108,14 @@ export default function AboutSection() {
             Our team focuses on innovation, efficiency, and client success -
             ensuring every project delivers real-world value.
           </p>
-          <button onClick={() => {}} className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-medium tracking-[0.18em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] transition hover:bg-white/20">
-            Learn More
+          <button
+            onClick={scrollToServices}
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/80 px-5 py-3 text-sm font-medium tracking-[0.18em] text-black backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] transition hover:bg-white/20 hover:text-amber-50"
+          >
+            Explore Our Services
           </button>
 
-        </motion.div>
+        </Motion.div>
 
         {/* RIGHT SIDE (STATS GRID) */}
         <div className="gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-2">

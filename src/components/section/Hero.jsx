@@ -5,10 +5,7 @@ const CounterDisplay = ({ target, suffix, isVisible }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!isVisible) {
-      setCount(0);
-      return;
-    }
+    if (!isVisible) return;
 
     let startTime;
     const duration = 2000; // 2 seconds
@@ -81,10 +78,10 @@ const letterVariant = {
 };
 
 const stats = [
-  { label: "Clients", value: 120, suffix: "+" },
-  { label: "Satisfaction", value: 100, suffix: "%" },
-  { label: "Partners", value: 25, suffix: "+" },
-  { label: "Ratings", value: 5, suffix: "/5" },
+  { label: "User Active", value: 380, suffix: "+" },
+  { label: "Trusted by Company", value: 230, suffix: "+" },
+  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" },
+  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" },
 ];
 
 export default function Hero({ introDone = true }) {
@@ -174,16 +171,25 @@ export default function Hero({ introDone = true }) {
           </button>
         </div>
 
-        <div className="mt-12 w-full max-w-3xl">
-          <div className="grid grid-cols-1 gap-0 text-left text-sm text-slate-300 sm:grid-cols-4 sm:divide-x sm:divide-white/20">
+        <div className="mt-12 w-full max-w-4xl">
+          <div className="grid grid-cols-1 rounded-md text-left text-sm text-slate-300 sm:grid-cols-4 sm:divide-x sm:divide-white/15">
             {stats.map((stat, index) => (
-              <div
+              <Motion.div
                 key={index}
-                className="group relative flex  flex-col justify-center items-center px-6 py-5 text-center backdrop-blur-lg transition-all duration-500"
+                onViewportEnter={() => handleStatInView(index)}
+                viewport={{ once: true }}
+                className="flex items-center justify-center gap-2 px-4 py-3 text-center sm:px-5"
               >
-                <p className="text-4xl font-extrabold text-white tracking-tight">{stat.value}{stat.suffix}</p>
-                <p className="mt-2 text-sm text-gray-300">{stat.label}</p>
-              </div>
+                <p className="text-4xl font-extrabold text-white sm:text-3xl">
+                  {stat.prefix || ""}
+                  <CounterDisplay
+                    target={stat.value}
+                    suffix={stat.suffix}
+                    isVisible={visibleIndices.has(index)}
+                  />
+                </p>
+                <p className="text-xs text-slate-300 sm:text-sm">{stat.label}</p>
+              </Motion.div>
             ))}
           </div>
         </div>
