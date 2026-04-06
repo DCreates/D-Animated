@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Projects from "./pages/Projects";
+import Testimonials from "./pages/Testimonials";
 
 function App() {
   const [isIntroActive, setIsIntroActive] = useState(true);
@@ -19,6 +21,8 @@ function App() {
       <Partners />
       <About />
       <Services />
+      <Projects />
+      <Testimonials />
 
       <Footer />
 
