@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
 import IntroAnimation from "./components/IntroAnimation";
 import Partners from "./components/section/Partners";
@@ -8,32 +9,53 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import Projects from "./pages/Projects";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
+import ServiceDetail from "./pages/ServiceDetail";
 
 function App() {
   const [isIntroActive, setIsIntroActive] = useState(true);
 
   return (
-    <LayoutGroup id="brand-logo-transition">
-      <Navbar />
-      <Home introDone={!isIntroActive} />
-      <Partners />
-      <About />
-      <Services />
-      <Projects />
-      <Testimonials />
-      <Contact />
+    <Router>
+      <LayoutGroup id="brand-logo-transition">
+        <Navbar />
+        
+        <Routes>
+          {/* Home page with all sections */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Home introDone={!isIntroActive} />
+                <Partners />
+                <About />
+                <Services />
+                <Testimonials />
+                <Contact />
+              </>
+            }
+          />
+          
+          {/* Service Detail page */}
+          <Route path="/service/:slug" element={<ServiceDetail />} />
+          
+          {/* Services page (for reference/navigation) */}
+          <Route path="/services" element={<Services />} />
+          
+          {/* Contact page standalone */}
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
 
-      <Footer />
+        <Footer />
 
-      <AnimatePresence>
-        {isIntroActive && (
-          <IntroAnimation onFinish={() => setIsIntroActive(false)} />
-        )}
-      </AnimatePresence>
-    </LayoutGroup>
+        <AnimatePresence>
+          {isIntroActive && (
+            <IntroAnimation onFinish={() => setIsIntroActive(false)} />
+          )}
+        </AnimatePresence>
+      </LayoutGroup>
+    </Router>
   );
 }
 

@@ -1,46 +1,46 @@
-import {
-  FaChartLine,
-  FaCloud,
-  FaLaptopCode,
-  FaMobileAlt,
-  FaPaintBrush,
-  FaRobot,
-} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 const services = [
   {
     name: "Web Development",
+    slug: "web-development",
     description: "Scalable web platforms with clean architecture and fast performance.",
-    icon: FaLaptopCode,
   },
   {
     name: "Mobile Apps",
+    slug: "mobile-apps",
     description: "Cross-platform apps with refined UX and production-ready reliability.",
-    icon: FaMobileAlt,
   },
   {
     name: "UI/UX Design",
+    slug: "ui-ux-design",
     description: "Design systems and interfaces that balance visual impact with usability.",
-    icon: FaPaintBrush,
   },
   {
     name: "Growth Strategy",
+    slug: "growth-strategy",
     description: "Data-led optimization to improve conversion, engagement, and retention.",
-    icon: FaChartLine,
   },
   {
     name: "Cloud Solutions",
+    slug: "cloud-solutions",
     description: "Secure cloud infrastructure and deployment pipelines built for scale.",
-    icon: FaCloud,
   },
   {
     name: "AI & Automation",
+    slug: "ai-automation",
     description: "Automation workflows and AI integrations that streamline operations.",
-    icon: FaRobot,
   },
 ];
 
 export default function Services() {
+  const navigate = useNavigate();
+
+  const handleViewMore = (slug) => {
+    navigate(`/service/${slug}`);
+  };
+
   return (
     <section
       id="services"
@@ -61,29 +61,31 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon;
-
-            return (
+        <div className="mt-6 border-y border-white/70">
+          {services.map((service) => (
             <div
-              key={service.name}
-              className="group relative rounded-2xl border border-white/20 px-6 pb-6 pt-16 backdrop-blur-lg shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-1 hover:border-white/40 hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)]"
+              key={service.slug}
+              className="group flex items-center justify-between border-b border-white/70 px-2 py-5 last:border-b-0 sm:px-4 md:py-6"
             >
-              <div className="absolute inset-0 rounded-2xl  opacity-0 transition group-hover:opacity-100" />
-
-              <div className="absolute left-10 top-0 z-10 inline-flex h-10 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg border border-white/25 bg-white/15 text-lg text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]">
-                <Icon />
+              <div>
+                <h3 className="text-2xl font-bold leading-none tracking-tight text-white sm:text-3xl md:text-4xl">
+                  {service.name}
+                </h3>
+                <p className="mt-2 max-w-2xl text-sm text-slate-300 md:text-base">
+                  {service.description}
+                </p>
               </div>
 
-              <h3 className="relative text-xl font-semibold text-white">{service.name}</h3>
-
-              <p className="relative mt-3 text-sm leading-6 text-slate-300 md:text-base">
-                {service.description}
-              </p>
+              <button
+                type="button"
+                onClick={() => handleViewMore(service.slug)}
+                className="ml-4 inline-flex shrink-0 items-center gap-2 text-base font-medium text-white transition group-hover:translate-x-1 group-hover:text-white/85 sm:text-2xl"
+              >
+                <span className="text-sm sm:text-base">View More</span>
+                <FaArrowRight className="text-lg sm:text-2xl" />
+              </button>
             </div>
-            );
-          })}
+          ))}
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function PremiumTestimonials() {
   const testimonials = [
@@ -66,28 +66,40 @@ export default function PremiumTestimonials() {
     );
   };
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 py-5 overflow-hidden">
-      <div className="relative w-full max-w-7xl rounded-[40px] border border-white/10 bg-gradient-to-br from-[#111] via-[#0c0c0c] to-black shadow-[0_40px_140px_rgba(0,0,0,0.95)] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
-        <div className="absolute -top-32 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-white/5 blur-3xl" />
+    <section
+      id="testimonials"
+      className="min-h-screen bg-black flex items-center justify-center px-4 py-5 overflow-hidden"
+    >
+      <div className="relative w-full max-w-7xl rounded-[40px]   overflow-hidden">
+       
 
         <div className="relative z-10 px-8 sm:px-10 lg:px-16 py-8 lg:py-10 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs tracking-[0.35em] uppercase text-white/50 backdrop-blur-xl mb-6">
-            Testimonials
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-1.5 text-xs tracking-[0.35em] uppercase text-white/70 backdrop-blur-xl mb-6">
+            Client Satisfaction
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight">
-            What Our Customers Say
+            Trusted by Teams That Value Precision
           </h2>
 
           <p className="mt-2 max-w-2xl mx-auto text-sm sm:text-base text-white/45 leading-7">
-            Real experiences from people who chose a more refined, elegant,
-            and premium digital experience.
+            Real feedback from partners who chose secure delivery, clear communication,
+            and premium execution.
           </p>
 
-          <button className="mt-3 rounded-full border border-white/10 bg-white text-black px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_40px_rgba(255,255,255,0.18)]">
-            Book Now
+          <button
+            onClick={scrollToContact}
+            className="mt-3 rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition hover:scale-[1.02]"
+          >
+            Start Your Project
           </button>
 
           <div className="relative mt-1 flex items-center justify-center min-h-[260px]">
