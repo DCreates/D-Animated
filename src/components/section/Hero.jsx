@@ -1,4 +1,45 @@
 import { motion as Motion } from "framer-motion";
+import { useState, useEffect } from "react";
+
+const CounterDisplay = ({ target, suffix, isVisible }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime;
+    const duration = 2000; // 2 seconds
+
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      if (typeof target === "number" && target % 1 === 0) {
+        // For integers, count up
+        setCount(Math.floor(progress * target));
+      } else {
+        // For decimals, show decimal value
+        setCount(parseFloat((progress * target).toFixed(1)));
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    const frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [isVisible, target]);
+
+  return (
+    <span>
+      {count}
+      {suffix}
+    </span>
+  );
+};
+
 
 const TITLE_LINES = [
   "At D Creates,",
@@ -36,7 +77,34 @@ const letterVariant = {
   },
 };
 
+const stats = [
+  { label: "Clients", value: 120, suffix: "+" },
+  { label: "Satisfaction", value: 98, suffix: "%" },
+  { label: "Partners", value: 25, suffix: "+" },
+  { label: "Ratings", value: 4.9, suffix: "/5" },
+];
+
 export default function Hero({ introDone = true }) {
+  const [visibleIndices, setVisibleIndices] = useState(new Set());
+
+  const handleStatInView = (index) => {
+    setVisibleIndices((prev) => new Set([...prev, index]));
+  };
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="home"
@@ -59,7 +127,7 @@ export default function Hero({ introDone = true }) {
         {/* Rating */}
         <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
           {/* <span className="text-amber-300">★★★★★</span> */}
-          
+
           <span>4.9 Client Satisfaction</span>
         </p>
 
@@ -108,28 +176,46 @@ export default function Hero({ introDone = true }) {
 
         {/* Buttons */}
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100">
+          <button
+            onClick={scrollToContact}
+            className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100"
+          >
             Start a Project
           </button>
 
-          <button className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
+          <button
+            onClick={scrollToServices}
+            className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10"
+          >
             View Case Studies
           </button>
         </div>
 
-        <div className="mt-12 grid w-full max-w-3xl grid-cols-1 gap-4 text-left text-sm text-slate-300 sm:grid-cols-3">
-          <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 backdrop-blur-sm">
-            <p className="text-xl font-semibold text-white">40+</p>
-            <p className="mt-1 text-slate-300">Projects Delivered</p>
-          </div>
-          <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 backdrop-blur-sm">
-            <p className="text-xl font-semibold text-white">12</p>
-            <p className="mt-1 text-slate-300">Industry Verticals</p>
-          </div>
-          <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 backdrop-blur-sm">
-            <p className="text-xl font-semibold text-white">99.9%</p>
-            <p className="mt-1 text-slate-300">Uptime Focus</p>
-          </div>
+        <div className="mt-12 grid w-full max-w-3xl grid-cols-1 gap-4 text-left text-sm text-slate-300 sm:grid-cols-4">
+          {stats.map((stat, index) => (
+            <Motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              onViewportEnter={() => handleStatInView(index)}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              viewport={{ once: true }}
+              className="group relative flex min-h-36 flex-col justify-center items-center rounded-2xl px-6 py-5 text-left backdrop-blur-lg shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)]"
+            >
+              <p className="text-xl font-semibold text-white">
+                <CounterDisplay
+                  target={stat.value}
+                  suffix={stat.suffix}
+                  isVisible={visibleIndices.has(index)}
+                />
+              </p>
+              <p className="mt-2 text-sm text-gray-300">{stat.label}</p>
+            </Motion.div>
+          ))}
         </div>
       </Motion.div>
     </section>

@@ -108,28 +108,17 @@ export default function AboutSection() {
             Our team focuses on innovation, efficiency, and client success -
             ensuring every project delivers real-world value.
           </p>
+          <button onClick={() => {}} className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-medium tracking-[0.18em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] transition hover:bg-white/20">
+            Learn More
+          </button>
+
         </motion.div>
 
         {/* RIGHT SIDE (STATS GRID) */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-2">
+        <div className="gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-2">
 
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className="group relative flex min-h-[142px] flex-col justify-center items-center rounded-2xl px-6 py-5 text-left backdrop-blur-lg shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)]"
-            >
-              {/* subtle inner glow */}
-              {/* <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/20 to-transparent opacity-0 group-hover:opacity-50 transition" /> */}
-
-              <Counter target={stat.value} suffix={stat.suffix} />
-
-              <p className="mt-2 text-sm text-gray-300">{stat.label}</p>
-            </motion.div>
-          ))}
+          <img src="../../../public/images/bgr.jpg" alt="D Create Logo" className="w-full rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl" />
+          
 
         </div>
       </div>

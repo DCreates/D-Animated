@@ -72,7 +72,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 text-center">
           <div className="mx-auto overflow-hidden [height:3.5em]">
             <p
-              className="text-5xl font-semibold leading-none tracking-[0.24em] text-white sm:text-6xl md:text-7xl"
+              className="text-10xl font-semibold leading-none tracking-[0.24em] text-white sm:text-6xl md:text-7xl"
               style={{
                 textShadow:
                   "0 0 8px rgba(255,255,255,0.65), 0 0 24px rgba(59,130,246,0.35)",
