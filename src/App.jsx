@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
 import IntroAnimation from "./components/IntroAnimation";
+import Partners from "./components/section/Partners";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import About from "./pages/About";
 
 function App() {
   const [isIntroActive, setIsIntroActive] = useState(true);
@@ -12,6 +14,9 @@ function App() {
     <LayoutGroup id="brand-logo-transition">
       <Navbar />
       <Home introDone={!isIntroActive} />
+      <Partners />
+      <About />
+
 
       <AnimatePresence>
         {isIntroActive && (

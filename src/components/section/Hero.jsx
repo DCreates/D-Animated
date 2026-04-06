@@ -1,36 +1,52 @@
 import { motion as Motion } from "framer-motion";
 
 const TITLE_LINES = [
-  "Innovative AI chatbot",
-  "solutions tailored for business.",
+  "At D Creates,",
+  "we engineer smart digital",
+  "ecosystems.",
 ];
 
 const lineVariant = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.03,
+      staggerChildren: 0.05,
     },
   },
 };
 
 const letterVariant = {
-  hidden: { opacity: 0, y: 10, filter: "blur(2px)" },
+  hidden: {
+    opacity: 0,
+    y: 100,
+    filter: "blur(3px)",
+    textShadow: "0 0 0px rgba(255,255,255,0)",
+  },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.28, ease: "easeOut" },
+    textShadow: [
+      "0 0 0px rgba(255,255,255,0)",
+      "0 0 14px rgba(255,255,255,0.9)",
+      "0 0 6px rgba(255,255,255,0.45)",
+      "0 0 0px rgba(255,255,255,0)",
+    ],
+    transition: { duration: 0.36, ease: "easeOut" },
   },
 };
 
 export default function Hero({ introDone = true }) {
   return (
-    <div className="relative h-screen w-full bg-black text-white overflow-hidden flex items-center justify-center">
+    <section
+      id="home"
+      className="relative min-h-screen w-full overflow-hidden bg-black text-white"
+    >
       {/* 🔵 Background Glow Effect */}
       <div className="absolute inset-0">
-        <div className="absolute w-[600px] h-[600px] bg-blue-700/20 blur-3xl rounded-full top-[-100px] left-[-100px]" />
-        <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-3xl rounded-full bottom-[-100px] right-[-100px]" />
+        {/* <div className="absolute left-[-120px] top-[-120px] h-[620px] w-[620px] rounded-full bg-blue-700/25 blur-3xl" /> */}
+        {/* <div className="absolute bottom-[-160px] right-[-120px] h-[560px] w-[560px] rounded-full bg-cyan-500/20 blur-3xl" /> */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_52%)]" />
       </div>
 
       {/* 🟢 Content */}
@@ -38,26 +54,27 @@ export default function Hero({ introDone = true }) {
         initial={{ opacity: 0, y: 40 }}
         animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 text-center px-6"
+        className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center justify-center px-6 pb-20 pt-36 text-center sm:px-10"
       >
         {/* Rating */}
-        <p className="w-80 h-1.5mb-5  items-center gap-2 rounded-full border border-white/30 bg-white/10 px-1 py-1.5 text-xs font-medium tracking-wide text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] text-center justify-center flex mx-auto mb-8">
-          <span className="text-amber-300">★★★★★</span>
-          <span className="h-1 w-1 rounded-full bg-white/70" aria-hidden="true" />
-          <span>4.7 (1k+ Reviews)</span>
+        <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
+          {/* <span className="text-amber-300">★★★★★</span> */}
+          
+          <span>4.9 Client Satisfaction</span>
         </p>
 
         {/* Title */}
-        <div className="relative overflow-hidden inline-block">
+        <div className="relative inline-block overflow-hidden">
           {/* Base Text (dim) */}
-          <h1 className="text-4xl md:text-6xl font-bold text-white/50">
-            Innovative AI chatbot <br />
-            solutions tailored for business.
+          <h1 className="text-4xl font-bold leading-tight tracking-tight text-white/45 md:text-6xl lg:text-7xl">
+            At D Creates,
+            <br />
+            we engineer smart digital ecosystems.
           </h1>
 
           {/* Animated Overlay */}
           <Motion.h1
-            className="absolute top-0 left-0 text-4xl md:text-6xl font-bold text-white"
+            className="absolute inset-0 text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
             initial="hidden"
             animate={introDone ? "visible" : "hidden"}
           >
@@ -68,9 +85,11 @@ export default function Hero({ introDone = true }) {
                 className="block"
                 transition={{ delayChildren: lineIndex * 0.2 }}
               >
-                {line.split("").map((char, ) => (
+                {line.split("").map((char, charIndex) => (
                   <Motion.span
-                    // 
+                    key={`${lineIndex}-${charIndex}-${char}`}
+                    variants={letterVariant}
+                    className="inline-block"
                   >
                     {char === " " ? "\u00A0" : char}
                   </Motion.span>
@@ -81,22 +100,38 @@ export default function Hero({ introDone = true }) {
         </div>
 
         {/* Subtitle */}
-        <p className="text-gray-400 max-w-xl mx-auto mb-8">
-          Our expertise is in integrating NLP into your applications, bots, and
-          IoT devices, optimizing workflows, and improving efficiency.
+        <p className="mx-auto mb-10 mt-6 max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
+          We design and build high-performance digital products across web, AI,
+          and automation, helping teams move faster with clear architecture and
+          polished execution.
         </p>
 
         {/* Buttons */}
-        <div className="flex justify-center gap-4">
-          <button className="bg-white text-black px-6 py-3 rounded-xl font-medium hover:scale-105 transition">
-            Let’s Talk
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
+          <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100">
+            Start a Project
           </button>
 
-          <button className="border border-gray-600 px-6 py-3 rounded-xl hover:bg-white hover:text-black transition">
-            Learn More
+          <button className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
+            View Case Studies
           </button>
         </div>
+
+        <div className="mt-12 grid w-full max-w-3xl grid-cols-1 gap-4 text-left text-sm text-slate-300 sm:grid-cols-3">
+          <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 backdrop-blur-sm">
+            <p className="text-xl font-semibold text-white">40+</p>
+            <p className="mt-1 text-slate-300">Projects Delivered</p>
+          </div>
+          <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 backdrop-blur-sm">
+            <p className="text-xl font-semibold text-white">12</p>
+            <p className="mt-1 text-slate-300">Industry Verticals</p>
+          </div>
+          <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 backdrop-blur-sm">
+            <p className="text-xl font-semibold text-white">99.9%</p>
+            <p className="mt-1 text-slate-300">Uptime Focus</p>
+          </div>
+        </div>
       </Motion.div>
-    </div>
+    </section>
   );
 }
