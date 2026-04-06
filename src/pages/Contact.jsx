@@ -25,7 +25,6 @@ export default function Contact() {
       id="contact"
       className="relative w-full overflow-hidden bg-black px-6 py-24 sm:px-10 lg:px-16"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.1),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_30%)]" />
 
       <div className="relative mx-auto w-full max-w-7xl">
         <div className="mb-14 text-center">
