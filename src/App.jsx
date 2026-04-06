@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Testimonials from "./pages/Testimonials";
+import Contact from "./pages/Contact";
 
 function App() {
   const [isIntroActive, setIsIntroActive] = useState(true);
@@ -23,6 +24,7 @@ function App() {
       <Services />
       <Projects />
       <Testimonials />
+      <Contact />
 
       <Footer />
 
