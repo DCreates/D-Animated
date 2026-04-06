@@ -24,7 +24,7 @@ export default function Partners() {
         {/* Title - Top Center */}
         <div className="mb-12 flex justify-center">
           <h3 className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-5 py-2 text-xs font-medium tracking-[0.18em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
-            Trusted by our collaborators
+            Trusted by our clients
           </h3>
         </div>
 

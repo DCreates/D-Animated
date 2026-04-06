@@ -5,7 +5,10 @@ const CounterDisplay = ({ target, suffix, isVisible }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible) {
+      setCount(0);
+      return;
+    }
 
     let startTime;
     const duration = 2000; // 2 seconds
@@ -79,9 +82,9 @@ const letterVariant = {
 
 const stats = [
   { label: "Clients", value: 120, suffix: "+" },
-  { label: "Satisfaction", value: 98, suffix: "%" },
+  { label: "Satisfaction", value: 100, suffix: "%" },
   { label: "Partners", value: 25, suffix: "+" },
-  { label: "Ratings", value: 4.9, suffix: "/5" },
+  { label: "Ratings", value: 4.9, suffix: "/5.0" },
 ];
 
 export default function Hero({ introDone = true }) {
@@ -89,20 +92,6 @@ export default function Hero({ introDone = true }) {
 
   const handleStatInView = (index) => {
     setVisibleIndices((prev) => new Set([...prev, index]));
-  };
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById("services");
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: "smooth" });
-    }
   };
 
   return (
@@ -128,7 +117,7 @@ export default function Hero({ introDone = true }) {
         <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
           {/* <span className="text-amber-300">★★★★★</span> */}
 
-          <span>4.9 Client Satisfaction</span>
+          <span>100% Client Satisfaction</span>
         </p>
 
         {/* Title */}
@@ -176,46 +165,27 @@ export default function Hero({ introDone = true }) {
 
         {/* Buttons */}
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <button
-            onClick={scrollToContact}
-            className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100"
-          >
+          <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100">
             Start a Project
           </button>
 
-          <button
-            onClick={scrollToServices}
-            className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10"
-          >
+          <button className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
             View Case Studies
           </button>
         </div>
 
-        <div className="mt-12 grid w-full max-w-3xl grid-cols-1 gap-4 text-left text-sm text-slate-300 sm:grid-cols-4">
-          {stats.map((stat, index) => (
-            <Motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              onViewportEnter={() => handleStatInView(index)}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              viewport={{ once: true }}
-              className="group relative flex min-h-36 flex-col justify-center items-center rounded-2xl px-6 py-5 text-left backdrop-blur-lg shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)]"
-            >
-              <p className="text-xl font-semibold text-white">
-                <CounterDisplay
-                  target={stat.value}
-                  suffix={stat.suffix}
-                  isVisible={visibleIndices.has(index)}
-                />
-              </p>
-              <p className="mt-2 text-sm text-gray-300">{stat.label}</p>
-            </Motion.div>
-          ))}
+        <div className="mt-12 w-full max-w-3xl">
+          <div className="grid grid-cols-1 gap-0 text-left text-sm text-slate-300 sm:grid-cols-4 sm:divide-x sm:divide-white/20">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="group relative flex  flex-col justify-center items-center px-6 py-5 text-center backdrop-blur-lg transition-all duration-500"
+              >
+                <p className="text-4xl font-extrabold text-white tracking-tight">{stat.value}{stat.suffix}</p>
+                <p className="mt-2 text-sm text-gray-300">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Motion.div>
     </section>
