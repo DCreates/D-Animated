@@ -1,181 +1,238 @@
+import {
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+
 export default function Contact() {
-  const contactCards = [
-    {
-      title: "Email",
-      value: "info@dcreate.com",
-      href: "mailto:info@dcreate.com",
-      note: "Best for project briefs and documents",
-    },
-    {
-      title: "Phone",
-      value: "+123 456 7890",
-      href: "tel:+1234567890",
-      note: "Mon - Fri, 9:00 AM to 6:00 PM",
-    },
-    {
-      title: "Location",
-      value: "123 Street, City",
-      href: "#",
-      note: "Remote-first with global collaboration",
-    },
-  ];
+  const whatsappLink =
+    "https://wa.me/94725535524?text=Hello,%20I%20want%20to%20start%20a%20project";
 
   return (
     <section
       id="contact"
-      className="relative w-full overflow-hidden bg-black px-6 py-24 sm:px-10 lg:px-16"
+      className="relative overflow-hidden bg-black px-6 py-28 sm:px-10 lg:px-20"
     >
+      {/* Premium Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_30%)]" />
+      <div className="absolute left-1/2 top-24 h-80 w-80 -translate-x-1/2 rounded-full bg-white/5 blur-[160px]" />
 
-      <div className="relative mx-auto w-full max-w-7xl">
-        <div className="mb-14 text-center">
-          <p className="mb-5 inline-flex items-center rounded-full border border-white/25 bg-white/10 px-5 py-2 text-xs font-medium tracking-[0.18em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
-            Contact Us
+      <div className="relative mx-auto max-w-7xl">
+
+        {/* Intro */}
+        <div className="mx-auto mb-20 max-w-5xl text-center">
+          <p className="inline-flex rounded-full border border-white/10 bg-white/5 px-6 py-2 text-xs tracking-[0.22em] text-white/70 backdrop-blur-xl">
+            PREMIUM CONTACT EXPERIENCE
           </p>
-          <h2 className="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white md:text-5xl">
-            Let&apos;s build your next digital product.
+
+          <h2 className="mt-8 text-4xl font-semibold leading-[1.08] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            Design. Strategy. Engineering.
+            <br />
+            Delivered beautifully.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
-            Share your vision, timeline, and goals. We will map the right strategy across design, development, and delivery.
+
+          <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
+            Let’s transform your vision into a premium digital experience.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.25fr]">
+        {/* Main Layout */}
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.1fr]">
+
+          {/* Left Side */}
           <div className="space-y-6">
-            <article className="rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                Why Teams Choose Us
+
+            <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-2xl">
+              <p className="text-xs uppercase tracking-[0.2em] text-white/60">
+                Premium Collaboration
               </p>
-              <h3 className="mt-3 text-2xl font-semibold text-white">Clear process. Faster delivery.</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                From discovery to deployment, we keep communication transparent and execution focused so your team moves with confidence.
+
+              <h3 className="mt-4 text-3xl font-semibold text-white">
+                Crafted for brands that value precision.
+              </h3>
+
+              <p className="mt-4 leading-8 text-slate-400">
+                We combine premium design, scalable development,
+                and clean engineering into one luxury experience.
               </p>
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-white/15 bg-black/35 p-4">
-                  <p className="text-xl font-semibold text-white">24h</p>
-                  <p className="mt-1 text-xs text-slate-400">Response time</p>
+
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <div className="rounded-2xl border border-white/10 bg-black/30 p-5">
+                  <p className="text-3xl font-semibold text-white">24h</p>
+                  <p className="mt-1 text-sm text-slate-400">Fast response</p>
                 </div>
-                <div className="rounded-xl border border-white/15 bg-black/35 p-4">
-                  <p className="text-xl font-semibold text-white">95%+</p>
-                  <p className="mt-1 text-xs text-slate-400">On-time delivery</p>
+
+                <div className="rounded-2xl border border-white/10 bg-black/30 p-5">
+                  <p className="text-3xl font-semibold text-white">98%</p>
+                  <p className="mt-1 text-sm text-slate-400">Client success</p>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-1">
-              {contactCards.map((item) => (
-                <article key={item.title} className="rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">{item.title}</p>
-                  <a href={item.href} className="mt-2 block text-lg text-white transition hover:text-white/80">
-                    {item.value}
-                  </a>
-                  <p className="mt-2 text-xs text-slate-400">{item.note}</p>
-                </article>
-              ))}
+            {/* Contact Cards */}
+            <div className="space-y-4">
+
+              <ContactCard
+                icon={<FaEnvelope />}
+                title="Email"
+                value="info@yourcompany.com"
+              />
+
+              <ContactCard
+                icon={<FaPhoneAlt />}
+                title="Phone"
+                value="+94 72 553 5524"
+              />
+
+              <ContactCard
+                icon={<FaMapMarkerAlt />}
+                title="Location"
+                value="Sri Lanka"
+              />
+
             </div>
           </div>
 
-          <form className="rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl md:p-8">
-            <div className="mb-6 flex items-start justify-between gap-4 border-b border-white/10 pb-5">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Project Inquiry</p>
-                <h3 className="mt-2 text-xl font-semibold text-white">Tell us about your project</h3>
-              </div>
-              <p className="rounded-full border border-white/20 bg-black/35 px-3 py-1 text-xs text-slate-300">
-                Secure form
+          {/* Premium Form */}
+          <form className="rounded-[32px] border border-white/10 bg-white/[0.04] p-7 backdrop-blur-3xl md:p-10">
+
+            <div className="mb-8">
+              <p className="text-xs uppercase tracking-[0.2em] text-white/60">
+                Start A Project
               </p>
+
+              <h3 className="mt-3 text-3xl font-semibold text-white">
+                Let’s build your next product.
+              </h3>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <label className="text-sm text-slate-300">
-                Name
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  className="mt-2 w-full rounded-xl border border-white/20 bg-black/40 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-white/45"
-                />
-              </label>
-
-              <label className="text-sm text-slate-300">
-                Company
-                <input
-                  type="text"
-                  placeholder="Company name"
-                  className="mt-2 w-full rounded-xl border border-white/20 bg-black/40 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-white/45"
-                />
-              </label>
+            <div className="grid gap-5 md:grid-cols-2">
+              <Input label="Name" placeholder="Your name" />
+              <Input label="Company" placeholder="Company name" />
+              <Input label="Email" placeholder="you@company.com" />
+              <BudgetSelect />
             </div>
 
-            <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <label className="text-sm text-slate-300">
-                Email
-                <input
-                  type="email"
-                  placeholder="you@company.com"
-                  className="mt-2 w-full rounded-xl border border-white/20 bg-black/40 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-white/45"
-                />
-              </label>
-
-              <label className="text-sm text-slate-300">
-                Budget
-                <select className="mt-2 w-full rounded-xl border border-white/20 bg-black/40 px-4 py-3 text-white outline-none transition focus:border-white/45">
-                  <option value="">Select range</option>
-                  <option value="10k-25k">$10k - $25k</option>
-                  <option value="25k-50k">$25k - $50k</option>
-                  <option value="50k+">$50k+</option>
-                </select>
-              </label>
+            <div className="mt-5">
+              <ServiceSelect />
             </div>
 
-            <label className="mt-4 block text-sm text-slate-300">
-              Service Needed
-              <select className="mt-2 w-full rounded-xl border border-white/20 bg-black/40 px-4 py-3 text-white outline-none transition focus:border-white/45">
-                <option value="">Select service</option>
-                <option value="web-development">Web Development</option>
-                <option value="mobile-apps">Mobile Apps</option>
-                <option value="ui-ux-design">UI/UX Design</option>
-                <option value="growth-strategy">Growth Strategy</option>
-                <option value="cloud-solutions">Cloud Solutions</option>
-                <option value="ai-automation">AI & Automation</option>
-              </select>
+            <div className="mt-5">
+              <Textarea />
+            </div>
+
+            <label className="mt-6 flex gap-3 text-sm text-slate-400">
+              <input type="checkbox" className="mt-1 h-4 w-4" />
+              I agree to project communication and updates.
             </label>
 
-            <label className="mt-4 block text-sm text-slate-300">
-              Project Brief
-              <textarea
-                rows={5}
-                placeholder="Tell us what you want to build..."
-                className="mt-2 w-full resize-none rounded-xl border border-white/20 bg-black/40 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-white/45"
-              />
-            </label>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
 
-            <label className="mt-4 flex items-start gap-3 text-sm text-slate-300">
-              <input type="checkbox" className="mt-1 h-4 w-4 rounded border-white/20 bg-black/40" />
-              <span>I agree to be contacted about this inquiry and project follow-up.</span>
-            </label>
-
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center rounded-full border border-white/35 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/60 hover:bg-white/15"
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-white px-7 py-3 text-center text-sm font-medium text-black transition hover:scale-[1.02]"
               >
                 Send Inquiry
-              </button>
+              </a>
+
               <button
                 type="button"
-                onClick={() => {
-                  const projectsSection = document.getElementById("projects");
-                  if (projectsSection) {
-                    projectsSection.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-medium text-white transition hover:border-white/45 hover:bg-white/10"
+                className="rounded-full border border-white/10 px-7 py-3 text-sm text-white transition hover:bg-white/5"
               >
-                View Our Projects
+                Explore Projects
               </button>
+
             </div>
           </form>
         </div>
       </div>
     </section>
+  );
+}
+
+/* Components */
+
+function ContactCard({ icon, title, value }) {
+  return (
+    <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
+      <div className="rounded-xl bg-white/10 p-3 text-white text-lg">
+        {icon}
+      </div>
+
+      <div>
+        <p className="text-xs uppercase tracking-[0.18em] text-white/60">
+          {title}
+        </p>
+        <p className="mt-1 text-white">{value}</p>
+      </div>
+    </div>
+  );
+}
+
+function Input({ label, placeholder }) {
+  return (
+    <label className="block text-sm text-slate-300">
+      <span>{label}</span>
+      <input
+        type="text"
+        placeholder={placeholder}
+        className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-white/25"
+      />
+    </label>
+  );
+}
+
+function BudgetSelect() {
+  return (
+    <label className="block text-sm text-slate-300">
+      <span>Budget</span>
+      <div className="relative mt-2">
+        <select className="w-full appearance-none rounded-2xl border border-white/10 bg-black/30 px-4 py-3 pr-12 text-white outline-none transition focus:border-white/25">
+          <option>Select range</option>
+          <option>$10k - $25k</option>
+          <option>$25k - $50k</option>
+          <option>$50k+</option>
+        </select>
+        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-lg text-white/50">
+          ⌄
+        </span>
+      </div>
+    </label>
+  );
+}
+
+function ServiceSelect() {
+  return (
+    <label className="block text-sm text-slate-300">
+      <span>Service Needed</span>
+      <div className="relative mt-2">
+        <select className="w-full appearance-none rounded-2xl border border-white/10 bg-black/30 px-4 py-3 pr-12 text-white outline-none transition focus:border-white/25">
+          <option>Select service</option>
+          <option>Web Development</option>
+          <option>Mobile Apps</option>
+          <option>UI/UX Design</option>
+          <option>Cloud Solutions</option>
+          <option>AI Automation</option>
+        </select>
+        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-lg text-white/50">
+          ⌄
+        </span>
+      </div>
+    </label>
+  );
+}
+
+function Textarea() {
+  return (
+    <label className="block text-sm text-slate-300">
+      <span>Project Brief</span>
+      <textarea
+        rows={5}
+        placeholder="Tell us what you want to build..."
+        className="mt-2 w-full resize-none rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-white/25"
+      />
+    </label>
   );
 }
