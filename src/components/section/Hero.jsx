@@ -80,8 +80,7 @@ const letterVariant = {
 const stats = [
   { label: "User Active", value: 380, suffix: "+" },
   { label: "Trusted by Company", value: 230, suffix: "+" },
-  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" },
-  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" },
+  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" }
 ];
 
 export default function Hero({ introDone = true }) {
@@ -94,12 +93,18 @@ export default function Hero({ introDone = true }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full overflow-hidden bg-black text-white"
+      className="relative min-h-screen w-full overflow-hidden bg-black/50 text-white"
     >
       {/* 🔵 Background Glow Effect */}
       <div className="absolute inset-0">
         {/* <div className="absolute left-[-120px] top-[-120px] h-[620px] w-[620px] rounded-full bg-blue-700/25 blur-3xl" /> */}
         {/* <div className="absolute bottom-[-160px] right-[-120px] h-[560px] w-[560px] rounded-full bg-cyan-500/20 blur-3xl" /> */}
+        <img
+          src="/images/globe.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-260 w-360 -translate-x-1/2 -translate-y-2/5 object-contain opacity-55"
+        />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_52%)]" />
       </div>
 
@@ -172,7 +177,7 @@ export default function Hero({ introDone = true }) {
         </div>
 
         <div className="mt-12 w-full max-w-4xl">
-          <div className="grid grid-cols-1 rounded-md text-left text-sm text-slate-300 sm:grid-cols-4 sm:divide-x sm:divide-white/15">
+          <div className="grid grid-cols-1 rounded-md text-left text-sm text-slate-300 sm:grid-cols-3 sm:divide-x sm:divide-white/15">
             {stats.map((stat, index) => (
               <Motion.div
                 key={index}
