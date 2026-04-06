@@ -84,7 +84,7 @@ const stats = [
   { label: "Clients", value: 120, suffix: "+" },
   { label: "Satisfaction", value: 100, suffix: "%" },
   { label: "Partners", value: 25, suffix: "+" },
-  { label: "Ratings", value: 4.9, suffix: "/5.0" },
+  { label: "Ratings", value: 5, suffix: "/5" },
 ];
 
 export default function Hero({ introDone = true }) {
