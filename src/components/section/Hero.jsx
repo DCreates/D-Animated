@@ -106,6 +106,7 @@ export default function Hero({ introDone = true }) {
           className="pointer-events-none absolute left-1/2 top-1/2 h-260 w-360 -translate-x-1/2 -translate-y-2/5 object-contain opacity-55"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_52%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-[15%] bg-linear-to-b from-transparent to-black" />
       </div>
 
       {/* 🟢 Content */}
@@ -176,8 +177,8 @@ export default function Hero({ introDone = true }) {
           </button>
         </div>
 
-        <div className="mt-12 w-full max-w-4xl">
-          <div className="grid grid-cols-1 rounded-md text-left text-sm text-slate-300 sm:grid-cols-3 sm:divide-x sm:divide-white/15">
+        <div className="mt-12 w-full ">
+          <div className="grid grid-cols-1 rounded-md text-center text-sm text-slate-300 sm:grid-cols-3 sm:divide-x sm:divide-white/15">
             {stats.map((stat, index) => (
               <Motion.div
                 key={index}
@@ -185,7 +186,7 @@ export default function Hero({ introDone = true }) {
                 viewport={{ once: true }}
                 className="flex items-center justify-center gap-2 px-4 py-3 text-center sm:px-5"
               >
-                <p className="text-4xl font-extrabold text-white sm:text-3xl">
+                <p className="text-4xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
                   {stat.prefix || ""}
                   <CounterDisplay
                     target={stat.value}
