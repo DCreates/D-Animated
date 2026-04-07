@@ -1,4 +1,5 @@
-import { FaCheckCircle, FaExchangeAlt } from "react-icons/fa";
+import { motion as Motion } from "framer-motion";
+import { FaHandshake, FaShieldAlt, FaSmile } from "react-icons/fa";
 
 export default function AiBusinessSection() {
   const capabilityCards = [
@@ -6,19 +7,22 @@ export default function AiBusinessSection() {
       title: "We Believe in Long-Term Trust",
       description:
         "Every project is built with transparency, accountability, and consistent communication from day one.",
-      icon: null,
+      icon: FaHandshake,
+      iconClass: "text-white/80",
     },
     {
       title: "Security Is a Core Commitment",
       description:
         "From architecture to deployment, we protect your data and systems with secure-by-design practices.",
-      icon: <FaCheckCircle className="mt-1 text-emerald-300" />,
+      icon: FaShieldAlt,
+      iconClass: "text-white/80",
     },
     {
       title: "Client Satisfaction Drives Our Delivery",
       description:
         "We focus on quality execution, measurable outcomes, and support that keeps clients confident.",
-      icon: <FaExchangeAlt className="mt-1 text-sky-300" />,
+      icon: FaSmile,
+      iconClass: "text-white/80",
     },
   ];
 
@@ -34,13 +38,26 @@ export default function AiBusinessSection() {
       <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         {/* LEFT SIDE - CARDS */}
         <div className="space-y-5">
-          {capabilityCards.map((card) => (
+          {capabilityCards.map((card, index) => {
+            const Icon = card.icon;
+
+            return (
             <div
               key={card.title}
-              className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl transition hover:border-white/30"
+              className="group rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl transition hover:border-white/30"
             >
               <div className="flex items-start gap-3">
-                {card.icon}
+                <Motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.08 }}
+                  whileHover={{ scale: 1.14, rotate: -8 }}
+                  animate={{ y: [0, -3, 0] }}
+                  className="mt-1"
+                >
+                  <Icon className={`text-3xl transition group-hover:text-white ${card.iconClass}`} />
+                </Motion.div>
                 <div>
                   <h3 className="text-lg font-semibold text-white">{card.title}</h3>
                   <p className="mt-2 text-sm leading-7 text-slate-300">
@@ -49,7 +66,8 @@ export default function AiBusinessSection() {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* RIGHT SIDE - TEXT */}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 import { scrollToSection, useScrollSpy } from "../hook/useScrollSpy.js";
 import { NAV_LINKS } from "../utils/constants.js";
 
@@ -37,23 +38,51 @@ const CloseIcon = ({ className }) => (
 );
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const activeSection = useScrollSpy(NAV_LINKS.map((link) => link.id));
+  const activeNavId = location.pathname.startsWith("/service")
+    ? "services"
+    : location.pathname === "/services"
+      ? "services"
+      : location.pathname === "/contact"
+        ? "contact"
+        : activeSection;
 
-    useEffect(() => {
-        const handleScroll = () => {
+  useEffect(() => {
+    const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-        };
+    };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
-    const handleNavClick = (sectionId) => {
-        scrollToSection(sectionId);
-        setIsMenuOpen(false);
-    };
+
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      return;
+    }
+
+    const sectionFromState = location.state?.scrollTo;
+    if (!sectionFromState) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      scrollToSection(sectionFromState);
+    });
+  }, [location]);
+
+  const handleNavClick = (sectionId) => {
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: sectionId } });
+    } else {
+      scrollToSection(sectionId);
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav
@@ -70,7 +99,13 @@ const Navbar = () => {
       >
         {/* Logo */}
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => {
+            if (location.pathname !== "/") {
+              navigate("/");
+            } else {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
           className="text-2xl font-bold text-blue-600"
         >
           <motion.img
@@ -89,7 +124,7 @@ const Navbar = () => {
               key={link.id}
               onClick={() => handleNavClick(link.id)}
               className={`text-base font-medium transition-all duration-300 ${
-                activeSection === link.id
+                activeNavId === link.id
                   ? "text-white"
                   : "text-white/50 hover:text-blue-500"
               }`}
@@ -136,7 +171,7 @@ const Navbar = () => {
               key={link.id}
               onClick={() => handleNavClick(link.id)}
               className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition ${
-                activeSection === link.id
+                activeNavId === link.id
                   ? "bg-blue-50 text-blue-600"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
