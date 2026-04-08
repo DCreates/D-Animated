@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-black pt-16 text-white border-t border-amber-50/20">
 
-      <div className="relative mx-auto w-[95%] max-w-[1420px]">
+      <div className="relative mx-auto w-[95%] max-w-355">
         <div className="grid gap-12 border-b border-white/10 pb-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
           {/* Left: About Section */}
           <div className="max-w-2xl">
@@ -55,9 +55,9 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 text-center">
-          <div className="mx-auto overflow-hidden [height:12.5em]">
+          <div className="mx-auto h-auto overflow-visible sm:h-24 sm:overflow-hidden md:h-36 lg:h-[12.5em]">
             <p
-              className="text-[290px] font-semibold leading-none tracking-[0.004em] text-white "
+              className="mx-auto inline-block whitespace-nowrap text-[44px] font-semibold leading-none tracking-[0.004em] text-white sm:text-[72px] md:text-[120px] lg:text-[290px]"
               
             >
               D-Creates

@@ -43,8 +43,8 @@ const CounterDisplay = ({ target, suffix, isVisible }) => {
 
 const TITLE_LINES = [
   "At D Creates,",
-  "we engineer smart digital",
-  "ecosystems.",
+  "we engineer smart",
+  "digital ecosystems.",
 ];
 
 const lineVariant = {
@@ -90,6 +90,9 @@ export default function Hero({ introDone = true }) {
     setVisibleIndices((prev) => new Set([...prev, index]));
   };
 
+  const titleBaseClass =
+    "text-4xl font-bold leading-[1.12] tracking-tight md:text-6xl lg:text-7xl";
+
   return (
     <section
       id="home"
@@ -114,10 +117,10 @@ export default function Hero({ introDone = true }) {
         initial={{ opacity: 0, y: 40 }}
         animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center justify-center px-6 pb-20 pt-36 text-center sm:px-10"
+        className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center justify-center px-4 pb-12 pt-28 text-center sm:px-10 sm:pb-20 sm:pt-36"
       >
         {/* Rating */}
-        <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
+        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[11px] font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] sm:mb-8 sm:px-4 sm:py-2 sm:text-xs">
           {/* <span className="text-amber-300">★★★★★</span> */}
 
           <span>100% Client Satisfaction</span>
@@ -126,15 +129,17 @@ export default function Hero({ introDone = true }) {
         {/* Title */}
         <div className="relative inline-block overflow-hidden">
           {/* Base Text (dim) */}
-          <h1 className="text-4xl font-bold leading-tight tracking-tight text-white/45 md:text-6xl lg:text-7xl">
-            At D Creates,
-            <br />
-            we engineer smart digital ecosystems.
+          <h1 className={`${titleBaseClass} text-white/45`}>
+            {TITLE_LINES.map((line) => (
+              <span key={`base-${line}`} className="block">
+                {line}
+              </span>
+            ))}
           </h1>
 
           {/* Animated Overlay */}
           <Motion.h1
-            className="absolute inset-0 text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
+            className={`absolute inset-0 ${titleBaseClass} text-white`}
             initial="hidden"
             animate={introDone ? "visible" : "hidden"}
           >
@@ -160,14 +165,14 @@ export default function Hero({ introDone = true }) {
         </div>
 
         {/* Subtitle */}
-        <p className="mx-auto mb-10 mt-6 max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
+        <p className="mx-auto mb-8 mt-5 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
           We design and build high-performance digital products across web, AI,
           and automation, helping teams move faster with clear architecture and
           polished execution.
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col justify-center gap-4 sm:flex-row">
+        <div className="flex w-full max-w-sm flex-col justify-center gap-3 sm:max-w-none sm:flex-row sm:gap-4">
           <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100">
             Start a Project
           </button>
@@ -177,16 +182,16 @@ export default function Hero({ introDone = true }) {
           </button>
         </div>
 
-        <div className="mt-12 w-full ">
-          <div className="grid grid-cols-1 rounded-md text-center text-sm text-slate-300 sm:grid-cols-3 sm:divide-x sm:divide-white/15">
+        <div className="mt-10 w-full">
+          <div className="grid grid-cols-3 rounded-md text-center text-sm text-slate-300 sm:mt-0 sm:divide-x sm:divide-white/15">
             {stats.map((stat, index) => (
               <Motion.div
                 key={index}
                 onViewportEnter={() => handleStatInView(index)}
                 viewport={{ once: true }}
-                className="flex items-center justify-center gap-2 px-4 py-3 text-center sm:px-5"
+                className="flex flex-col items-center justify-center gap-0.5 px-1 py-2 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
               >
-                <p className="text-4xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
+                <p className="text-xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
                   {stat.prefix || ""}
                   <CounterDisplay
                     target={stat.value}
@@ -194,7 +199,7 @@ export default function Hero({ introDone = true }) {
                     isVisible={visibleIndices.has(index)}
                   />
                 </p>
-                <p className="text-xs text-slate-300 sm:text-sm">{stat.label}</p>
+                <p className="text-[10px] leading-tight text-slate-300 sm:text-sm">{stat.label}</p>
               </Motion.div>
             ))}
           </div>

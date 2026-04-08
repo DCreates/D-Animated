@@ -150,9 +150,9 @@ const Navbar = () => {
           className="md:hidden"
         >
           {isMenuOpen ? (
-            <CloseIcon className="w-6 h-6 text-gray-800" />
+            <CloseIcon className="w-6 h-6 text-white/60" />
           ) : (
-            <MenuIcon className="w-6 h-6 text-gray-800" />
+            <MenuIcon className="w-6 h-6 text-white/60" />
           )}
         </button>
       </div>
