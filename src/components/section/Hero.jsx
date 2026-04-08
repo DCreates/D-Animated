@@ -172,8 +172,8 @@ export default function Hero({ introDone = true }) {
         </p>
 
         {/* Buttons */}
-        <div className="flex w-full max-w-sm flex-col justify-center gap-3 sm:max-w-none sm:flex-row sm:gap-4">
-          <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100">
+        <div className="flex w-full max-w-sm flex-row justify-center gap-3 sm:max-w-none sm:flex-row sm:gap-4">
+          <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100 md:w-20/100">
             Start a Project
           </button>
 

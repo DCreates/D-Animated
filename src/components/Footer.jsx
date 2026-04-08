@@ -57,7 +57,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 text-center">
           <div className="mx-auto h-auto overflow-visible sm:h-24 sm:overflow-hidden md:h-36 lg:h-[12.5em]">
             <p
-              className="mx-auto inline-block whitespace-nowrap text-[44px] font-semibold leading-none tracking-[0.004em] text-white sm:text-[72px] md:text-[120px] lg:text-[290px]"
+              className="mx-auto inline-block whitespace-nowrap text-[44px] font-semibold leading-none tracking-[0.004em] text-white sm:text-[102px] md:text-[120px] lg:text-[290px]"
               
             >
               D-Creates
