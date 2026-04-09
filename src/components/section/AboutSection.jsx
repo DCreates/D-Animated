@@ -110,7 +110,7 @@ export default function AboutSection() {
           </p>
           <button
             onClick={scrollToServices}
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/80 px-5 py-2.5 text-sm font-bold tracking-[0.10em] text-black backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] transition hover:bg-white/20 hover:text-amber-50"
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white px-5 py-2.5 text-sm font-bold tracking-[0.10em] text-black backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] transition hover:bg-white/20 hover:text-amber-50"
           >
             Explore Us
           </button>
