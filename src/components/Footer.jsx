@@ -1,4 +1,3 @@
-
 export default function Footer() {
   const contactDetails = [
     { label: "Email", value: "info@dcreate.com", href: "mailto:info@dcreate.com" },
@@ -7,63 +6,78 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-black pt-16 text-white border-t border-amber-50/20">
+    <footer className="relative overflow-hidden bg-black pt-6 text-white border-t border-white/10">
 
-      <div className="relative mx-auto w-[95%] max-w-355">
-        <div className="grid gap-12 border-b border-white/10 pb-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
-          {/* Left: About Section */}
-          <div className="max-w-2xl">
-            <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]">
-              D Create Studio
-            </p>
-            <p className="text-xl font-bold leading-tight tracking-tight md:text-xl">
-              Building polished digital products with clarity, speed, and precision.
-            </p>
-            <p className="mt-5 max-w-xl text-base leading-7 text-slate-300 md:text-lg">
-              We design experiences that feel intentional from the first interaction to the final click, with a focus on professional execution and long-term scalability.
-            </p>
-          </div>
+      <div className="relative mx-auto w-[95%] max-w-7xl">
 
-          {/* Right: Contact Details */}
-          <div className="flex flex-col justify-start gap-6 lg:items-end lg:text-right">
-            <div>
-              <p className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
-                Get in Touch
-              </p>
-              <ul className="space-y-5">
-                {contactDetails.map((item) => (
-                  <li key={item.label} className="flex flex-col lg:items-end">
-                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-white/50 mb-2">
-                      {item.label}
-                    </p>
-                    <a
-                      href={item.href}
-                      className="text-base text-slate-200 transition hover:text-white font-medium"
-                    >
-                      {item.value}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+        {/* MAIN SECTION */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-16 mb-16">
+          
+          {/* LEFT: Brand */}
+          <div className="max-w-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="h-[1px] w-8 bg-neutral-700"></div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-500">
+                Studio Philosophy
+              </span>
             </div>
-          </div>
-        </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 py-8 text-center text-sm text-slate-400 sm:flex-row sm:text-left">
-          <p>© 2026 D Create. All rights reserved.</p>
-          <p className="tracking-[0.18em] uppercase text-white/60">Design. Build. Launch.</p>
-        </div>
+            <h2 className="text-3xl sm:text-4xl font-medium leading-tight text-[#f5f5f7]">
+              Building polished digital products with clarity, speed, and precision.
+            </h2>
 
-        <div className="border-t border-white/10 pt-8 text-center">
-          <div className="mx-auto h-auto overflow-visible sm:h-24 sm:overflow-hidden md:h-36 lg:h-[12.5em]">
-            <p
-              className="mx-auto inline-block whitespace-nowrap text-[44px] font-semibold leading-none tracking-[0.004em] text-white sm:text-[102px] md:text-[120px] lg:text-[290px]"
-              
-            >
-              D-Creates
+            <p className="mt-6 text-base text-neutral-500 leading-relaxed">
+              Designing intentional experiences from first interaction to final click,
+              focusing on professional execution and long-term scalability.
             </p>
           </div>
+
+          {/* RIGHT: Contact */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-6">
+            {contactDetails.map((item) => (
+              <div key={item.label} className="group">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 mb-1">
+                  {item.label}
+                </p>
+                <a
+                  href={item.href}
+                  className="text-base text-neutral-300 transition-all duration-300 group-hover:text-white group-hover:translate-x-1 inline-block"
+                >
+                  {item.value}
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* BOTTOM BAR */}
+        <div className="flex flex-col sm:flex-row items-center justify-between py-4 border-t border-white/5 gap-4">
+
+          <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.2em] text-neutral-300">
+            <p>© 2026 D Create</p>
+            <span className="h-3 w-[1px] bg-neutral-400"></span>
+            <p>All Rights Reserved</p>
+          </div>
+
+          <div className="flex items-center gap-6">
+            {["Design", "Build", "Launch"].map((text) => (
+              <span
+                key={text}
+                className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-200 hover:text-white transition"
+              >
+                {text}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* BIG TEXT */}
+        <div className="border-t border-white/10 pt-2 mt-1 text-center overflow-hidden">
+          <p className="text-[90px] sm:text-[140px] md:text-[180px] lg:text-[287px] font-semibold leading-none tracking-[10px] bg-gradient-to-b from-blue-600 via-sky-500 to-black text-transparent bg-clip-text select-none">
+            D-Create
+          </p>
+        </div>
+
       </div>
     </footer>
   );

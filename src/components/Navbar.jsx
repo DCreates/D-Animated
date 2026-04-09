@@ -93,7 +93,7 @@ const Navbar = () => {
       <div
         className={`w-[95%] max-w-[1420px] max-h-[50px] flex items-center justify-between px-7 py-3 rounded-3xl border transition-all duration-300 ${
           isScrolled
-            ? "bg-black/50 backdrop-blur-md shadow-md border-gray-200"
+            ? "bg-black/50 backdrop-blur-md shadow-md border-gray-700"
             : "bg-black border-gray-900"
         }`}
       >
@@ -106,14 +106,14 @@ const Navbar = () => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
-          className="text-2xl font-bold text-blue-600"
+          className="text-2xl font-bold text-cyan-400"
         >
           <motion.img
             layoutId="brand-logo"
             src="/images/DCreates.svg"
             alt="Globus Logo"
             transition={{ type: "spring", stiffness: 240, damping: 24 }}
-            className="h-6 w-auto object-contain"
+            className="h-5 w-auto object-contain"
           />
         </button>
 
@@ -126,7 +126,7 @@ const Navbar = () => {
               className={`text-base font-medium transition-all duration-300 ${
                 activeNavId === link.id
                   ? "text-white"
-                  : "text-white/50 hover:text-blue-500"
+                  : "text-white/50 hover:text-cyan-400"
               }`}
             >
               {link.label}
@@ -138,7 +138,7 @@ const Navbar = () => {
         <div className="hidden md:flex">
           <button
             onClick={() => handleNavClick("contact")}
-            className="px-6 py-1 rounded-full text-white font-semibold hover:opacity-90 transition"
+            className="px-6 py-1 border border-x-cyan-300/80 bg-white/10 backdrop-blur rounded-full text-white font-semibold hover:opacity-70 transition"
           >
             Get in Touch
           </button>
@@ -161,19 +161,19 @@ const Navbar = () => {
       <div
         className={`absolute top-full w-[95%] max-w-[1320px] md:hidden transition-all duration-300 overflow-hidden ${
           isMenuOpen
-            ? "rounded-2xl max-h-96 opacity-100 mt-[-8px]"
+            ? "rounded-2xl max-h-98 opacity-100 mt-[-8px]"
             : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 space-y-3">
+        <div className="bg-black/50 backdrop-blur-md shadow-md rounded-2xl shadow-lg border border-gray-700 p-6 space-y-3">
           {NAV_LINKS.map((link) => (
             <button
               key={link.id}
               onClick={() => handleNavClick(link.id)}
               className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition ${
                 activeNavId === link.id
-                  ? "bg-blue-50 text-blue-600"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-blue-50 text-cyan-400"
+                  : "text-white/60 hover:bg-cyan-400"
               }`}
             >
               {link.label}
@@ -182,7 +182,7 @@ const Navbar = () => {
 
           <button
             onClick={() => handleNavClick("contact")}
-            className="w-full mt-0 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold"
+            className="w-full mt-0 px-5 py-2 rounded-full border border-x-cyan-300/80 bg-white/10 backdrop-blur rounded-full text-white font-semibold hover:opacity-70"
           >
             Get in Touch
           </button>
