@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 
 export default function PremiumTestimonials() {
   const testimonials = [
-    { id: 1, name: "Sophia Carter", role: "Creative Director", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop", quote: "This platform transformed our workflow completely. The attention to detail and premium experience exceeded every expectation." },
-    { id: 2, name: "Daniel Brooks", role: "Startup Founder", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop", quote: "The interface feels incredibly polished and intuitive. It has the same level of refinement you would expect from Apple." },
-    { id: 3, name: "Emma Wilson", role: "Marketing Lead", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&auto=format&fit=crop", quote: "Beautiful, seamless, and thoughtfully crafted. Every interaction feels smooth and premium." },
-    { id: 4, name: "Michael Chen", role: "Product Designer", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop", quote: "A stunning experience from start to finish. The visual design alone impressed our entire team." },
-    { id: 5, name: "Ava Martinez", role: "Business Consultant", image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=400&auto=format&fit=crop", quote: "The clean design and elegant motion made our brand feel more premium instantly." },
+    { id: 1, name: "Sophia Carter", role: "Creative Director", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop", quote: "This platform transformed our workflow completely. The attention to detail and premium experience exceeded every expectation.", rating: 5 },
+    { id: 2, name: "Daniel Brooks", role: "Startup Founder", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop", quote: "The interface feels incredibly polished and intuitive. It has the same level of refinement you would expect from Apple.", rating: 5 },
+    { id: 3, name: "Emma Wilson", role: "Marketing Lead", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&auto=format&fit=crop", quote: "Beautiful, seamless, and thoughtfully crafted. Every interaction feels smooth and premium.", rating: 4 },
+    { id: 4, name: "Michael Chen", role: "Product Designer", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop", quote: "A stunning experience from start to finish. The visual design alone impressed our entire team.", rating: 5 },
+    { id: 5, name: "Ava Martinez", role: "Business Consultant", image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=400&auto=format&fit=crop", quote: "The clean design and elegant motion made our brand feel more premium instantly.", rating: 5 },
   ];
 
   const [active, setActive] = useState(2);
@@ -39,12 +39,11 @@ export default function PremiumTestimonials() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Side: Image Stack (Visual Interest) */}
+          {/* Left Side: Image Stack */}
           <div className="lg:col-span-5 relative h-[400px] flex items-center justify-center">
             <div className="relative w-full h-full flex items-center justify-center">
               {testimonials.map((item, index) => {
                 const isActive = index === active;
-                const distance = Math.abs(index - active);
                 
                 return (
                   <div
@@ -73,16 +72,26 @@ export default function PremiumTestimonials() {
           {/* Right Side: Content Card */}
           <div className="lg:col-span-7">
             <div className="relative p-8 md:p-12 rounded-[2rem] border border-white/[0.08] bg-white/[0.02] backdrop-blur-3xl overflow-hidden">
-              {/* Subtle Ambient Glow */}
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 blur-[100px] rounded-full" />
               
-              {/* Animated Content Wrapper */}
               <div key={active} className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                
+                {/* Progress Bars */}
                 <div className="flex gap-1 mb-8">
-                  {[...Array(5)].map((_, i) => (
+                  {[...Array(testimonials.length)].map((_, i) => (
                     <div key={i} className="h-1 w-8 rounded-full bg-white/10 overflow-hidden">
-                      <div className={`h-full bg-white transition-all duration-[5000ms] ease-linear ${i === active && isAutoPlaying ? 'w-full' : 'w-0'}`} />
+                      <div className={`h-full bg-white transition-all duration-[5000ms] ease-linear ${i === active && isAutoPlaying ? 'w-full' : (i < active ? 'w-full' : 'w-0')}`} />
                     </div>
+                  ))}
+                </div>
+
+                {/* Star Rating System */}
+                <div className="flex gap-1 mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIcon 
+                      key={i} 
+                      className={`w-5 h-5 ${i < testimonials[active].rating ? "text-amber-400 fill-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]" : "text-white/10"}`} 
+                    />
                   ))}
                 </div>
 
@@ -125,7 +134,15 @@ export default function PremiumTestimonials() {
   );
 }
 
-// Simple Icon Components
+// Icon Components
+function StarIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+  );
+}
+
 function ArrowLeftIcon({ className }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
