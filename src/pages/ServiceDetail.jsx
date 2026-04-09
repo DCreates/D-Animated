@@ -1,9 +1,134 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { motion as Motion } from "framer-motion";
-import { FaArrowLeft, FaArrowRight, FaCheckCircle, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useState } from "react";
+import { motion as Motion, AnimatePresence } from "framer-motion";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaChevronLeft,
+  FaChevronRight,
+  FaCheckCircle,
+  FaShieldAlt,
+  FaStar,
+  FaCogs,
+  FaRocket,
+  FaUsers,
+  FaClipboardCheck,
+  FaAward,
+  FaLayerGroup,
+  FaRegLightbulb,
+  FaClock,
+} from "react-icons/fa";
+import { useState, useEffect, useMemo } from "react";
 import { getServiceBySlug } from "../data/services";
 import { projects } from "../data/projects";
+
+const premiumSpring = { type: "spring", stiffness: 110, damping: 18, mass: 0.9 };
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: premiumSpring },
+};
+
+const staggerContainer = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const cardLift = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: premiumSpring },
+};
+
+const defaultQualityStats = [
+  { label: "Quality Control", value: "98%", icon: FaShieldAlt },
+  { label: "Client Satisfaction", value: "100%", icon: FaStar },
+  { label: "On-Time Delivery", value: "24/7", icon: FaClock },
+  { label: "Support Standard", value: "Premium", icon: FaAward },
+];
+
+const defaultServicePoints = [
+  {
+    title: "Strategic planning",
+    desc: "A focused roadmap aligned with your goals, audience, and growth direction.",
+    icon: FaRegLightbulb,
+  },
+  {
+    title: "High-performance delivery",
+    desc: "Fast, stable, and scalable execution designed for modern business needs.",
+    icon: FaRocket,
+  },
+  {
+    title: "Quality assurance",
+    desc: "Testing, review, and refinement at every stage for a polished outcome.",
+    icon: FaClipboardCheck,
+  },
+  {
+    title: "Future-ready architecture",
+    desc: "Built to grow with your business, brand, and digital operations.",
+    icon: FaLayerGroup,
+  },
+];
+
+function SectionTitle({ eyebrow, title, desc }) {
+  return (
+    <div className="mb-8 max-w-3xl">
+      {eyebrow && (
+        <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.35em] text-white/45">
+          {eyebrow}
+        </p>
+      )}
+      <h2 className="text-3xl font-semibold tracking-tight text-white md:text-5xl">
+        {title}
+      </h2>
+      {desc && (
+        <p className="mt-4 text-base leading-relaxed text-white/60 md:text-lg">
+          {desc}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function StatCard({ item }) {
+  const Icon = item.icon;
+  return (
+    <Motion.div
+      variants={cardLift}
+      className="group rounded-[28px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-sm text-white/55">{item.label}</p>
+          <p className="mt-2 text-2xl font-semibold tracking-tight text-white">
+            {item.value}
+          </p>
+        </div>
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80 transition-transform duration-300 group-hover:scale-105">
+          <Icon />
+        </div>
+      </div>
+    </Motion.div>
+  );
+}
+
+function ServicePointCard({ item }) {
+  const Icon = item.icon;
+  return (
+    <Motion.div
+      variants={cardLift}
+      className="group rounded-[30px] border border-white/10 bg-[#101014] p-6 transition-all duration-300 hover:border-white/20 hover:bg-[#14141a]"
+    >
+      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 text-white/80 ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-105">
+        <Icon />
+      </div>
+      <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+      <p className="mt-3 text-sm leading-7 text-white/60">{item.desc}</p>
+    </Motion.div>
+  );
+}
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -11,454 +136,326 @@ export default function ServiceDetail() {
   const service = getServiceBySlug(slug);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  
+  const relatedProjects = useMemo(() => {
+    if (!service?.relatedProjects?.length) return [];
+    return projects.filter((project) =>
+      service.relatedProjects.includes(project.title)
+    );
+  }, [service]);
 
-  // Get related projects
-  const relatedProjects = projects.filter((project) =>
-    service.relatedProjects.includes(project.title)
-  );
+  const qualityStats = service?.qualityStats?.length
+    ? service.qualityStats
+    : defaultQualityStats;
 
-  const handleScrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+  const servicePoints = service?.servicePoints?.length
+    ? service.servicePoints
+    : defaultServicePoints;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [slug]);
+
+  useEffect(() => {
+    if (currentSlide >= relatedProjects.length) {
+      setCurrentSlide(0);
     }
-  };
+  }, [relatedProjects.length, currentSlide]);
 
-  const totalSlides = relatedProjects.length;
+  if (!service) {
+    return <div className="min-h-screen bg-black" />;
+  }
 
   const nextSlide = () => {
-    if (totalSlides <= 1) return;
-    setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+    if (!relatedProjects.length) return;
+    setCurrentSlide((prev) => (prev === relatedProjects.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    if (totalSlides <= 1) return;
-    setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+    if (!relatedProjects.length) return;
+    setCurrentSlide((prev) => (prev === 0 ? relatedProjects.length - 1 : prev - 1));
   };
 
-  const getSlidePosition = (index) => {
-    if (totalSlides === 1) return 0;
-
-    const forward = (index - currentSlide + totalSlides) % totalSlides;
-    const backward = (currentSlide - index + totalSlides) % totalSlides;
-
-    if (forward === 0) return 0;
-
-    if (totalSlides === 2) {
-      return forward === 1 ? 1 : null;
-    }
-
-    if (forward === 1) return 1;
-    if (backward === 1) return -1;
-    return null;
-  };
+  const currentProject = relatedProjects[currentSlide];
 
   return (
-    <div className="min-h-screen bg-black ">
-      {/* Back Button */}
-      
+    <div className="relative min-h-screen overflow-x-hidden bg-[#050505] font-sans text-[#f5f5f7] selection:bg-white/30">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(88,80,255,0.18),transparent_55%),radial-gradient(ellipse_40%_30%_at_80%_20%,rgba(255,255,255,0.05),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:72px_72px]" />
 
-      
-  {/* Hero Section - Two Columns */}
-        <Motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative w-full overflow-hidden px-6 py-24 sm:px-10 lg:px-16"
-        >
-          <div className="relative mx-auto w-full max-w-7xl pt-24">
-            {/* Animated background gradient */}
-            
+      <nav className="fixed top-0 z-[100] w-full border-b border-white/[0.05] bg-black/45 backdrop-blur-3xl supports-[backdrop-filter]:bg-black/25">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-10">
+          <button
+            onClick={() => navigate(-1)}
+            className="group flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/55 transition-all hover:text-white"
+          >
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors group-hover:bg-white/10">
+              <FaArrowLeft className="transition-transform group-hover:-translate-x-0.5" />
+            </span>
+            <span className="hidden sm:block">Back</span>
+          </button>
 
-            {/* Two Column Layout */}
-            <div className="grid gap-12 lg:grid-cols-[1fr_400px]">
-              {/* Left Column - Service Details */}
-              <Motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative"
-              >
-                <p className="mb-5 inline-flex items-center rounded-full border border-white/25 px-5 py-2 text-xs font-medium tracking-[0.18em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
-                  Service Details
-                </p>
+          <div className="max-w-[50vw] truncate text-[10px] font-bold uppercase tracking-[0.35em] text-white/45">
+            {service.name}
+          </div>
+        </div>
+      </nav>
 
-                <h1 className="mt-8 text-4xl font-bold leading-tight text-white sm:text-5xl">
-                  {service.name}
-                </h1>
-
-                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300 md:text-xl">
-                  {service.description}
-                </p>
-
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">
-                  {service.heroSubtitle}
-                </p>
-
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <button
-                    onClick={handleScrollToContact}
-                    className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-black font-medium transition hover:bg-white/90 shadow-lg"
-                  >
-                    Start Your Project
-                    <FaArrowRight />
-                  </button>
-                  <button
-                    onClick={() => navigate("/contact")}
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/25 px-8 py-4 text-white font-medium transition hover:border-white/50 hover:bg-white/5"
-                  >
-                    Schedule a Call
-                  </button>
-                </div>
+      <section className="relative px-4 pb-12 pt-28 md:px-10 md:pt-40">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            <Motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate="show"
+              className="relative z-10"
+            >
+              <Motion.div variants={fadeUp}>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-white/70">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_20px_rgba(74,222,128,0.8)]" />
+                  {service.category || "Premium Service"}
+                </span>
               </Motion.div>
 
-              {/* Right Column - Project Slider */}
-              {relatedProjects.length > 0 && (
-                <Motion.div
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="relative"
-                >
-                  <div className="rounded-2xl  backdrop-blur-xl p-2 overflow-hidden">
-                    
+              <Motion.h1
+                variants={fadeUp}
+                className="mt-6 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-7xl xl:text-[5.8rem] xl:leading-[0.95]"
+              >
+                {service.name}
+              </Motion.h1>
 
-                    {/* Slider Container */}
-                    <div className="relative h-84 overflow-hidden rounded-xl">
-                      {relatedProjects.map((project, index) => {
-                        const position = getSlidePosition(index);
-                        const isCenter = position === 0;
-                        const isSide = position === -1 || position === 1;
+              <Motion.p
+                variants={fadeUp}
+                className="mt-6 max-w-2xl text-base leading-8 text-white/60 md:text-xl"
+              >
+                {service.description}
+              </Motion.p>
 
-                        return (
-                          <Motion.div
-                            key={index}
-                            initial={false}
-                            animate={{
-                              x: position === 0 ? 0 : position === -1 ? -130 : position === 1 ? 130 : 0,
-                              scale: position === 0 ? 1 : isSide ? 0.78 : 0.65,
-                              opacity: position === 0 ? 1 : isSide ? 0.45 : 0,
-                              filter:
-                                position === 0
-                                  ? "blur(0px)"
-                                  : isSide
-                                    ? "blur(2px)"
-                                    : "blur(5px)",
-                              zIndex: position === 0 ? 30 : isSide ? 20 : 10,
-                            }}
-                            transition={{ duration: 0.45, ease: "easeInOut" }}
-                            className="absolute left-1/2 top-1/2 h-[88%] w-[72%] max-w-65 -translate-x-1/2 -translate-y-1/2"
-                            onClick={() => {
-                              if (position === -1 || position === 1) {
-                                setCurrentSlide(index);
-                              }
-                            }}
-                            style={{ pointerEvents: position === null ? "none" : "auto" }}
-                          >
-                            <div className="h-full flex flex-col rounded-lg border border-white/10 bg-linear-to-br from-blue-500/10 to-cyan-500/10 overflow-hidden">
-                              <div className="flex-1 overflow-hidden flex items-center justify-center">
-                                <img
-                                  src={project.previewA}
-                                  alt={project.title}
-                                  className="h-full w-full object-cover"
-                                />
-                              </div>
+              <Motion.div variants={fadeUp} className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <button className="inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_45px_rgba(255,255,255,0.18)]">
+                  Start Project
+                </button>
+                <button className="inline-flex h-14 items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/10">
+                  Explore Capabilities
+                </button>
+              </Motion.div>
 
-                              <div className="p-4 bg-black/45 backdrop-blur-sm">
-                                <h4 className="text-sm font-bold text-white line-clamp-1">
-                                  {project.title}
-                                </h4>
-                                <p className="mt-1 text-xs text-white/70 line-clamp-1">
-                                  {project.tags[0]}
-                                </p>
-                                <p className="mt-2 text-xs font-medium text-blue-400">
-                                  {project.metric}
-                                </p>
-                              </div>
-                            </div>
+              <Motion.div
+                variants={fadeUp}
+                className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+              >
+                {qualityStats.map((item, idx) => (
+                  <StatCard key={idx} item={item} />
+                ))}
+              </Motion.div>
+            </Motion.div>
 
-                            {isCenter && (
-                              <div className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-white/20" />
-                            )}
-                          </Motion.div>
-                        );
-                      })}
-                    </div>
-
-                    {/* Arrow Controls - Centered on Y Axis */}
-                    <button
-                      type="button"
-                      aria-label="Previous project"
-                      onClick={prevSlide}
-                      className="absolute left-3 top-1/2 z-40 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white/80 backdrop-blur-md transition hover:bg-black/65 hover:text-white"
-                    >
-                      <FaChevronLeft className="text-sm" />
-                    </button>
-
-                    <button
-                      type="button"
-                      aria-label="Next project"
-                      onClick={nextSlide}
-                      className="absolute right-3 top-1/2 z-40 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white/80 backdrop-blur-md transition hover:bg-black/65 hover:text-white"
-                    >
-                      <FaChevronRight className="text-sm" />
-                    </button>
-
-                    {/* Slide Counter */}
-                    <div className="mt-4 text-center text-xs text-white/60 font-medium whitespace-nowrap">
-                      {currentSlide + 1} / {totalSlides}
-                    </div>
-
-                    {/* Slide Indicators */}
-                    <div className="flex gap-1 mt-4 justify-center">
-                      {relatedProjects.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentSlide(index)}
-                          className={`h-2 rounded-full transition ${
-                            index === currentSlide
-                              ? "bg-white w-8"
-                              : "bg-white/30 w-2 hover:bg-white/50"
-                          }`}
+            <div className="relative">
+              <div className="absolute inset-0 -z-10 rounded-[40px] bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.08),transparent_58%)] blur-2xl" />
+              <Motion.div
+                initial={{ opacity: 0, scale: 0.96, y: 18 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={premiumSpring}
+                className="relative overflow-hidden rounded-[34px] border border-white/10 bg-white/[0.03] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.6)] backdrop-blur-2xl"
+              >
+                <div className="relative overflow-hidden rounded-[28px] bg-[#0b0b0f]">
+                  {currentProject ? (
+                    <AnimatePresence mode="wait">
+                      <Motion.div
+                        key={currentProject.title}
+                        initial={{ opacity: 0, x: 30, scale: 0.98 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: -30, scale: 0.98 }}
+                        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                        className="relative aspect-[4/5] w-full overflow-hidden lg:aspect-[5/6]"
+                      >
+                        <img
+                          src={currentProject.previewA}
+                          alt={currentProject.title}
+                          className="h-full w-full object-cover opacity-85"
                         />
-                      ))}
+                        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.3)_48%,rgba(0,0,0,0.05)_100%)]" />
+
+                        <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-3 sm:left-6 sm:right-6 sm:top-6">
+                          <span className="rounded-full border border-white/10 bg-black/30 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-white/70 backdrop-blur-xl sm:px-4">
+                            Featured Result
+                          </span>
+                          <span className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-white/80 backdrop-blur-xl sm:px-4">
+                            Quality-Checked
+                          </span>
+                        </div>
+
+                        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8">
+                          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-[11px] font-semibold text-white/75 backdrop-blur-xl">
+                            <FaShieldAlt className="text-emerald-400" />
+                            Built with premium quality standards
+                          </div>
+                          <h3 className="text-2xl font-semibold text-white md:text-3xl">
+                            {currentProject.title}
+                          </h3>
+                          <p className="mt-2 max-w-lg text-sm leading-6 text-white/60 md:text-base">
+                            {currentProject.metric}
+                          </p>
+                        </div>
+                      </Motion.div>
+                    </AnimatePresence>
+                  ) : (
+                    <div className="flex aspect-[4/5] items-center justify-center p-10 text-center lg:aspect-[5/6]">
+                      <div>
+                        <FaLayerGroup className="mx-auto text-4xl text-white/25" />
+                        <p className="mt-4 text-sm text-white/55">
+                          No related projects found for this service yet.
+                        </p>
+                      </div>
                     </div>
+                  )}
+                </div>
+
+                <div className="mt-3 flex items-center justify-between gap-3 px-2 pb-1">
+                  <div className="text-xs uppercase tracking-[0.25em] text-white/40">
+                    {relatedProjects.length
+                      ? `${currentSlide + 1} / ${relatedProjects.length}`
+                      : "0 / 0"}
                   </div>
-                </Motion.div>
-              )}
+
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={prevSlide}
+                      disabled={!relatedProjects.length}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition-all hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      <FaChevronLeft />
+                    </button>
+                    <button
+                      onClick={nextSlide}
+                      disabled={!relatedProjects.length}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition-all hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      <FaChevronRight />
+                    </button>
+                  </div>
+                </div>
+              </Motion.div>
             </div>
           </div>
-        </Motion.section>
+        </div>
+      </section>
 
-      {/* What We Offer Section */}
-      {/* <Motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative w-full overflow-hidden px-6 py-24 sm:px-10 lg:px-16"
-      >
-        <div className="relative mx-auto w-full max-w-7xl">
-          <Motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-16 text-center"
-          >
-            <h2 className="text-4xl font-bold text-white md:text-5xl">
-              What We Offer
-            </h2>
-            <p className="mt-4 text-base text-slate-300 md:text-lg">
-              Comprehensive solutions tailored to your specific needs and goals.
-            </p>
-          </Motion.div>
+      <section className="px-4 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle
+            eyebrow="Service Details"
+            title="What this service delivers"
+            desc="A clearer breakdown of the value, process, and results behind this offering."
+          />
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {service.whatWeOffer.map((feature, index) => (
-              <Motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group rounded-xl border border-white/10 bg-white/3 p-8 transition hover:border-white/25 hover:bg-white/8 hover:shadow-2xl"
-              >
-                <h3 className="text-xl font-bold text-white mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-300">
-                  {feature.description}
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-white/50 group-hover:text-white/70 transition">
-                  <FaCheckCircle className="text-sm" />
-                  <span className="text-xs">Included</span>
-                </div>
-              </Motion.div>
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {servicePoints.map((item, idx) => (
+              <ServicePointCard key={idx} item={item} />
             ))}
           </div>
         </div>
-      </Motion.section> */}
+      </section>
 
-      
-      
+      <section className="px-4 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle
+            eyebrow="Selected Work"
+            title="Recent results that reflect this service"
+            desc="A premium showcase of related projects, presented in a cleaner editorial style."
+          />
 
-      {/* Related Projects Section */}
-      {relatedProjects.length > 0 && (
-        <Motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="relative w-full overflow-hidden px-6 py-24 sm:px-10 lg:px-16 bg-white/2"
-        >
-          <div className="relative mx-auto w-full max-w-7xl">
-            <Motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="mb-16 text-center"
-            >
-              <h2 className="text-4xl font-bold text-white md:text-5xl">
-                Related Projects
-              </h2>
-              <p className="mt-4 text-base text-slate-300 md:text-lg">
-                See how we've applied our expertise to similar challenges.
-              </p>
-            </Motion.div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {relatedProjects.map((project, index) => (
-                <Motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group overflow-hidden rounded-xl border border-white/10 bg-white/3 transition hover:border-white/25 hover:bg-white/8"
-                >
-                  {/* Project Image Preview */}
-                  <div className="relative h-48 overflow-hidden bg-linear-to-br from-blue-500/10 via-transparent to-cyan-500/10 flex items-center justify-center">
-                    <div className="flex gap-3">
-                      <img
-                        src={project.previewA}
-                        alt={project.title}
-                        className="h-24 w-24 rounded-lg object-cover opacity-80 group-hover:opacity-100 transition"
-                      />
-                      <img
-                        src={project.previewB}
-                        alt={project.title}
-                        className="h-24 w-24 rounded-lg object-cover opacity-80 group-hover:opacity-100 transition"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Project Details */}
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-slate-300 mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="mb-4 flex flex-wrap gap-2">
-                      {project.tags.slice(0, 3).map((tag, i) => (
-                        <span
-                          key={i}
-                          className="inline-flex items-center rounded-full bg-white/8 px-3 py-1 text-xs font-medium text-white/80"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Metric */}
-                    <p className="text-xs font-medium text-blue-400">
-                      {project.metric}
-                    </p>
-                  </div>
-                </Motion.div>
-              ))}
-            </div>
-          </div>
-        </Motion.section>
-      )}
-
-      {/* Technologies Section */}
-      <Motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative w-full overflow-hidden px-6 py-24 sm:px-10 lg:px-16 bg-white/2"
-      >
-        <div className="relative mx-auto w-full max-w-7xl">
-          <Motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-16 text-center"
-          >
-            <h2 className="text-4xl font-bold text-white md:text-5xl">
-              Technologies We Use
-            </h2>
-            <p className="mt-4 text-base text-slate-300 md:text-lg">
-              Modern, battle-tested tools and frameworks to build your solutions.
-            </p>
-          </Motion.div>
-
-          <div className="relative overflow-hidden">
-          
-            <div className="animate-scroll flex w-max gap-4 py-2">
-              {[...service.technologies, ...service.technologies].map((tech, index) => {
-                const IconComponent = tech.icon;
-                return (
-                  <div
-                    key={`${tech.name}-${index}`}
-                    className="group flex min-w-45 items-center gap-1 rounded-lg px-2 py-4 transition hover:border-white/25 hover:bg-white/8"
+          {relatedProjects.length ? (
+            <>
+              <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
+                {relatedProjects.slice(0, 3).map((project, idx) => (
+                  <Motion.div
+                    key={project.title}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ ...premiumSpring, delay: idx * 0.08 }}
+                    className={`group relative overflow-hidden rounded-[32px] border border-white/10 bg-[#0c0c10] ${
+                      idx === 0
+                        ? "min-h-[360px] lg:col-span-7 lg:row-span-2"
+                        : "min-h-[220px] lg:col-span-5"
+                    }`}
                   >
-                    <IconComponent className="text-2xl text-white transition group-hover:text-blue-400" />
-                    <p className="text-sm font-medium text-slate-300 transition group-hover:text-white">
-                      {tech.name}
-                    </p>
-                  </div>
-                );
-              })}
+                    <img
+                      src={project.previewA}
+                      alt={project.title}
+                      className="absolute inset-0 h-full w-full object-cover opacity-45 transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-60"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.92),rgba(0,0,0,0.25),rgba(0,0,0,0.05))]" />
+                    <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                      <span className="inline-flex rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-white/75 backdrop-blur-xl">
+                        {project.tags?.[0] || "Premium Work"}
+                      </span>
+                      <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+                        {project.title}
+                      </h3>
+                      <p className="mt-3 max-w-xl text-sm leading-6 text-white/60 md:text-base">
+                        {project.metric}
+                      </p>
+                    </div>
+                  </Motion.div>
+                ))}
+              </div>
+
+              <div className="mt-5 flex justify-center md:justify-end">
+                <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/80 transition-all hover:bg-white/10">
+                  View all related work <FaArrowRight className="text-xs" />
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="rounded-[32px] border border-white/10 bg-white/[0.03] p-10 text-center text-white/55">
+              No related projects have been linked to this service yet.
             </div>
+          )}
+        </div>
+      </section>
+
+      <section className="px-4 py-16 md:px-10 md:py-28">
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-[36px] border border-white/10 bg-[#0b0b0f] p-7 text-center md:rounded-[64px] md:p-16">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/85">
+            <FaUsers />
           </div>
+          <h2 className="mt-8 text-3xl font-semibold tracking-tight text-white md:text-6xl">
+            Ready to build something exceptional?
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/60 md:text-xl">
+            Let us turn this service into a polished premium experience with
+            quality-focused execution and modern design standards.
+          </p>
+          <button className="mt-10 inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-black transition-transform hover:scale-[1.02] active:scale-[0.98]">
+            Start a Conversation
+          </button>
         </div>
-      </Motion.section>
+      </section>
 
-
-      {/* Final CTA Section */}
-      <Motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative w-full overflow-hidden px-6 py-24 sm:px-10 lg:px-16"
-      >
-        <div className="relative mx-auto w-full max-w-4xl">
-          {/* Animated background gradient */}
-          <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500/10 via-transparent to-cyan-500/10 blur-3xl" />
-
-          <Motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative rounded-2xl border border-white/20 bg-white/5 backdrop-blur-xl p-12 text-center sm:p-16"
-          >
-            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-              Ready to get started?
-            </h2>
-            <p className="mt-6 text-base leading-relaxed text-slate-300 md:text-lg">
-              Let's discuss how we can help you achieve your goals with our {service.name.toLowerCase()} services.
-            </p>
-
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
-              <button
-                onClick={handleScrollToContact}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-black font-medium transition hover:bg-white/90 shadow-lg"
-              >
-                Start Your Project
-                <FaArrowRight />
-              </button>
-              <button
-                onClick={() => navigate("/services")}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/25 px-8 py-4 text-white font-medium transition hover:border-white/50 hover:bg-white/5"
-              >
-                Explore Other Services
-              </button>
-            </div>
-          </Motion.div>
+      <div className="fixed bottom-5 left-0 right-0 z-[100] px-4 md:hidden">
+        <div className="flex items-center justify-between rounded-full border border-white/10 bg-[#111115]/90 p-2 pl-5 shadow-2xl backdrop-blur-xl">
+          <span className="text-xs font-semibold tracking-wide text-white/80">
+            Ready to start?
+          </span>
+          <button className="h-10 rounded-full bg-white px-5 text-[11px] font-bold uppercase text-black">
+            Contact Us
+          </button>
         </div>
-      </Motion.section>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.33%); }
+        }
+        .animate-scroll {
+          animation: scroll 22s linear infinite;
+        }
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}} />
     </div>
   );
 }
