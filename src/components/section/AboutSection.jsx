@@ -67,7 +67,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden bg-black px-6 py-24 sm:px-10 lg:px-16"
+      className="relative w-full overflow-hidden bg-black px-6 py-3 sm:px-10 sm:py-6 lg:px-16 lg:py-24"
     >
 
       {/* Soft Parallax Backgrounds */}
@@ -120,7 +120,7 @@ export default function AboutSection() {
         {/* RIGHT SIDE (STATS GRID) */}
         <div className="gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-2">
 
-          <img src="../../../public/images/bgr.jpg" alt="D Create Logo" className="w-full rounded-2xl border border-y-cyan-300 bg-white/5  backdrop-blur-xl" />
+          <img src="/images/bgr.jpg" alt="D Create Logo" className="w-full rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl" />
           
 
         </div>
