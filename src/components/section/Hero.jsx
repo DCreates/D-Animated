@@ -40,12 +40,7 @@ const CounterDisplay = ({ target, suffix, isVisible }) => {
   );
 };
 
-
-const TITLE_LINES = [
-  "At D Creates,",
-  "we engineer smart",
-  "digital ecosystems.",
-];
+const TITLE_LINES = ["D Creates,", "Where Innovation Meets Excellence."];
 
 const lineVariant = {
   hidden: {},
@@ -59,8 +54,8 @@ const lineVariant = {
 const letterVariant = {
   hidden: {
     opacity: 0,
-    y: 100,
-    filter: "blur(3px)",
+    y: 80,
+    filter: "blur(6px)",
     textShadow: "0 0 0px rgba(255,255,255,0)",
   },
   visible: {
@@ -69,18 +64,21 @@ const letterVariant = {
     filter: "blur(0px)",
     textShadow: [
       "0 0 0px rgba(255,255,255,0)",
-      "0 0 14px rgba(255,255,255,0.9)",
-      "0 0 6px rgba(255,255,255,0.45)",
-      "0 0 0px rgba(255,255,255,0)",
+      "0 0 18px rgba(255,255,255,1)",
+      "0 0 8px rgba(255,255,255,0.6)",
+      "0 0 0px rgba(255,255,255,0)", // 👈 ends CLEAN (no shine)
     ],
-    transition: { duration: 0.36, ease: "easeOut" },
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
   },
 };
 
 const stats = [
   { label: "User Active", value: 380, suffix: "+" },
   { label: "Trusted by Company", value: 230, suffix: "+" },
-  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" }
+  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" },
 ];
 
 export default function Hero({ introDone = true }) {
@@ -117,7 +115,7 @@ export default function Hero({ introDone = true }) {
         initial={{ opacity: 0, y: 40 }}
         animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center justify-center px-4 pb-12 pt-28 text-center sm:px-10 sm:pb-20 sm:pt-36"
+        className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-center px-4 pb-12 pt-28 text-center sm:px-10 sm:pb-20 sm:pt-36"
       >
         {/* Rating */}
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[11px] font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] sm:mb-8 sm:px-4 sm:py-2 sm:text-xs">
@@ -127,40 +125,53 @@ export default function Hero({ introDone = true }) {
         </p>
 
         {/* Title */}
-        <div className="relative inline-block overflow-hidden">
-          {/* Base Text (dim) */}
-          <h1 className={`${titleBaseClass} text-white/45`}>
-            {TITLE_LINES.map((line) => (
-              <span key={`base-${line}`} className="block">
-                {line}
-              </span>
-            ))}
-          </h1>
+        <div className="relative inline-block w-full text-center overflow-hidden">
+          {/* Static Base Text (optional dim) */}
+          
 
           {/* Animated Overlay */}
           <Motion.h1
-            className={`absolute inset-0 ${titleBaseClass} text-white`}
+            className="font-bold text-white leading-[1.12] max-w-6xl mx-auto whitespace-nowrap"
+            variants={lineVariant}
             initial="hidden"
             animate={introDone ? "visible" : "hidden"}
           >
-            {TITLE_LINES.map((line, lineIndex) => (
-              <Motion.span
-                key={line}
-                variants={lineVariant}
-                className="block"
-                transition={{ delayChildren: lineIndex * 0.2 }}
-              >
-                {line.split("").map((char, charIndex) => (
-                  <Motion.span
-                    key={`${lineIndex}-${charIndex}-${char}`}
-                    variants={letterVariant}
-                    className="inline-block"
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </Motion.span>
-                ))}
-              </Motion.span>
-            ))}
+            {/* Line 1 */}
+            <span className="block text-5xl md:text-7xl lg:text-8xl ">
+              {"D Creates".split("").map((char, i) => (
+                <Motion.span
+                  key={i}
+                  variants={letterVariant}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </Motion.span>
+              ))}
+            </span>
+
+            {/* Line 2 */}
+            <span className="block text-4xl md:text-5xl lg:text-6xl ">
+              {"Where Innovation Meets".split("").map((char, i) => (
+                <Motion.span
+                  key={i}
+                  variants={letterVariant}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </Motion.span>
+              ))}
+            </span>
+            <span className="block text-4xl md:text-6xl lg:text-7xl ">
+              {"Excellence.".split("").map((char, i) => (
+                <Motion.span
+                  key={i}
+                  variants={letterVariant}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </Motion.span>
+              ))}
+            </span>
           </Motion.h1>
         </div>
 
@@ -199,7 +210,9 @@ export default function Hero({ introDone = true }) {
                     isVisible={visibleIndices.has(index)}
                   />
                 </p>
-                <p className="text-[10px] leading-tight text-slate-300 sm:text-sm">{stat.label}</p>
+                <p className="text-[10px] leading-tight text-slate-300 sm:text-sm">
+                  {stat.label}
+                </p>
               </Motion.div>
             ))}
           </div>
