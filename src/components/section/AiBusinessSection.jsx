@@ -59,7 +59,7 @@ export default function AiBusinessSection() {
                     transition={{ type: "spring", stiffness: 300 }}
                     className="relative"
                   >
-                    <div className="w-22 h-22 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition">
+                    <div className="w-22 h-22 rounded-2xl bg-white/20 border border-white/20 flex items-center justify-center backdrop-blur-md group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition">
                       <Icon className="w-11 h-11 text-white/90" />
                     </div>
                   </Motion.div>

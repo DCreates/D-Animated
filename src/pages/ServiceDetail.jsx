@@ -43,7 +43,7 @@ const cardLift = {
 };
 
 const defaultQualityStats = [
-  { label: "Quality Control", value: "98%", icon: FaShieldAlt },
+  { label: "Quality Control", value: "99.9%", icon: FaShieldAlt },
   { label: "Client Satisfaction", value: "100%", icon: FaStar },
   { label: "On-Time Delivery", value: "24/7", icon: FaClock },
   { label: "Support Standard", value: "Premium", icon: FaAward },
@@ -92,6 +92,7 @@ function SectionTitle({ eyebrow, title, desc }) {
   );
 }
 
+
 function StatCard({ item }) {
   const Icon = item.icon;
   return (
@@ -101,12 +102,12 @@ function StatCard({ item }) {
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm text-white/55">{item.label}</p>
+          <p className="text-sm text-white/60">{item.label}</p>
           <p className="mt-2 text-2xl font-semibold tracking-tight text-white">
             {item.value}
           </p>
         </div>
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80 transition-transform duration-300 group-hover:scale-105">
+        <div className="flex h-15 w-15 items-center text-2xl justify-center rounded-2xl border border-white/10 bg-white/5 text-white/90 transition-transform duration-300 group-hover:scale-105">
           <Icon />
         </div>
       </div>
@@ -116,16 +117,32 @@ function StatCard({ item }) {
 
 function ServicePointCard({ item }) {
   const Icon = item.icon;
+
   return (
     <Motion.div
       variants={cardLift}
-      className="group rounded-[30px] border border-white/10 bg-[#101014] p-6 transition-all duration-300 hover:border-white/20 hover:bg-[#14141a]"
+      whileHover={{ y: -6 }}
+      className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#0f0f13] p-4 sm:p-6 transition-all duration-300 hover:border-white/20 hover:bg-[#14141a]"
     >
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 text-white/80 ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-105">
-        <Icon />
+      {/* Glow effect */}
+      <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="absolute -inset-1 bg-gradient-to-br from-white/10 via-transparent to-white/5 blur-xl" />
       </div>
-      <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-      <p className="mt-3 text-sm leading-7 text-white/60">{item.desc}</p>
+
+      {/* Icon */}
+      <div className="relative z-10 mb-4 flex h-14 w-14 sm:h-15 sm:w-15 items-center justify-center rounded-xl bg-white/5 text-white/80 ring-1 ring-white/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/10">
+        <Icon className="text-2xl sm:text-3xl" />
+      </div>
+
+      {/* Title */}
+      <h3 className="relative z-10 text-sm sm:text-lg font-semibold text-white">
+        {item.title}
+      </h3>
+
+      {/* Description */}
+      <p className="relative z-10 mt-2 text-xs sm:text-sm leading-6 text-white/60">
+        {item.desc}
+      </p>
     </Motion.div>
   );
 }
@@ -176,6 +193,13 @@ export default function ServiceDetail() {
   };
 
   const currentProject = relatedProjects[currentSlide];
+
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#050505] font-sans text-[#f5f5f7] selection:bg-white/30">
@@ -415,30 +439,74 @@ export default function ServiceDetail() {
         </div>
       </section>
 
-      <section className="px-4 py-16 md:px-10 md:py-28">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-[36px] border border-white/10 bg-[#0b0b0f] p-7 text-center md:rounded-[64px] md:p-16">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/85">
+      <section className="relative px-4 py-20 md:px-10 md:py-32 overflow-hidden">
+      
+      {/* Background Glow Effects */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 h-[400px] w-[400px] rounded-full bg-blue-400/15 blur-[120px]" />
+        <div className="absolute bottom-[-120px] right-1/3 h-[300px] w-[300px] rounded-full bg-sky-400/25 blur-[120px]" />
+      </div>
+
+      <Motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="relative mx-auto max-w-5xl overflow-hidden rounded-[32px] md:rounded-[56px] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 md:p-16 text-center shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+      >
+        {/* Glass overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 opacity-60" />
+
+        {/* Content */}
+        <div className="relative z-10">
+          
+          {/* Icon */}
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/10 text-white text-2xl shadow-inner shadow-white/10 backdrop-blur-md">
             <FaUsers />
           </div>
-          <h2 className="mt-8 text-3xl font-semibold tracking-tight text-white md:text-6xl">
-            Ready to build something exceptional?
+
+          {/* Heading */}
+          <h2 className="mt-8 text-3xl font-semibold tracking-tight text-white md:text-6xl leading-tight">
+            Ready to build something{" "}
+            <span className="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+              exceptional?
+            </span>
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/60 md:text-xl">
-            Let us turn this service into a polished premium experience with
-            quality-focused execution and modern design standards.
+
+          {/* Description */}
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/60 md:text-xl">
+            Let us transform your vision into a refined digital experience —
+            crafted with precision, performance, and world-class design standards.
           </p>
-          <button className="mt-10 inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-black transition-transform hover:scale-[1.02] active:scale-[0.98]">
-            Start a Conversation
-          </button>
+
+          {/* Button */}
+          <Motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            className="group relative mt-10 inline-flex h-14 items-center justify-center overflow-hidden rounded-full bg-white px-8 text-sm font-semibold text-black shadow-lg"
+          >
+            {/* Button shine effect */}
+            <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-[100%]" />
+
+            <span className="relative z-10 flex items-center gap-2">
+              Start a Conversation
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </span>
+          </Motion.button>
         </div>
-      </section>
+      </Motion.div>
+    </section>
 
       <div className="fixed bottom-5 left-0 right-0 z-[100] px-4 md:hidden">
-        <div className="flex items-center justify-between rounded-full border border-white/10 bg-[#111115]/90 p-2 pl-5 shadow-2xl backdrop-blur-xl">
+        <div className="flex items-center justify-between rounded-full border border-white/10 bg-white/2 p-2 pl-5 shadow-2xl backdrop-blur-xl">
           <span className="text-xs font-semibold tracking-wide text-white/80">
             Ready to start?
           </span>
-          <button className="h-10 rounded-full bg-white px-5 text-[11px] font-bold uppercase text-black">
+          <button 
+          onClick={scrollToContact}
+          className="h-10 rounded-full bg-white px-5 text-[11px] font-bold uppercase text-black transition hover:bg-transparent hover:text-white hover:border-white">
             Contact Us
           </button>
         </div>
