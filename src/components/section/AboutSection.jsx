@@ -67,7 +67,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden bg-black px-6 py-24 sm:px-10 lg:px-16"
+      className="relative w-full overflow-hidden bg-black px-6 py-3 sm:px-10 sm:py-6 lg:px-16 lg:py-24"
     >
 
       {/* Soft Parallax Backgrounds */}
@@ -90,7 +90,7 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="max-w-2xl"
         >
-          <p className="mb-5 inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
+          <p className="mb-5 inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
             About D Create
           </p>
 

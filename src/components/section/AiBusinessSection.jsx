@@ -34,7 +34,7 @@ export default function AiBusinessSection() {
   };
 
   return (
-    <section className="bg-black px-6 py-24 text-white sm:px-10 lg:px-16">
+    <section className="bg-black px-6  text-white sm:px-10 lg:px-16 p7-3 sm:py-6 lg:py-24">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         {/* LEFT SIDE - CARDS */}
         <div className="space-y-5">
