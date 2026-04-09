@@ -88,9 +88,6 @@ export default function Hero({ introDone = true }) {
     setVisibleIndices((prev) => new Set([...prev, index]));
   };
 
-  const titleBaseClass =
-    "text-4xl font-bold leading-[1.12] tracking-tight md:text-6xl lg:text-7xl";
-
   return (
     <section
       id="home"
@@ -115,106 +112,109 @@ export default function Hero({ introDone = true }) {
         initial={{ opacity: 0, y: 40 }}
         animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-center px-4 pb-12 pt-28 text-center sm:px-10 sm:pb-20 sm:pt-36"
+        className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-start px-4 pb-8 pt-24 text-center sm:px-10 sm:pb-20 sm:pt-36"
       >
-        {/* Rating */}
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[11px] font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] sm:mb-8 sm:px-4 sm:py-2 sm:text-xs">
-          {/* <span className="text-amber-300">★★★★★</span> */}
+        <div className="flex w-full flex-1 flex-col items-center gap-8">
+          <div className="flex w-full flex-1 flex-col items-center justify-center">
+            {/* Rating */}
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[11px] font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] sm:mb-8 sm:px-4 sm:py-2 sm:text-xs">
+              {/* <span className="text-amber-300">★★★★★</span> */}
 
-          <span>100% Client Satisfaction</span>
-        </p>
+              <span>100% Client Satisfaction</span>
+            </p>
 
-        {/* Title */}
-        <div className="relative inline-block w-full text-center overflow-hidden">
-          {/* Static Base Text (optional dim) */}
-          
-
-          {/* Animated Overlay */}
-          <Motion.h1
-            className="font-bold text-white leading-[1.12] max-w-6xl mx-auto whitespace-nowrap"
-            variants={lineVariant}
-            initial="hidden"
-            animate={introDone ? "visible" : "hidden"}
-          >
-            {/* Line 1 */}
-            <span className="block text-5xl md:text-7xl lg:text-8xl ">
-              {"D Creates".split("").map((char, i) => (
-                <Motion.span
-                  key={i}
-                  variants={letterVariant}
-                  className="inline-block"
+            {/* Title */}
+            <div className="relative inline-block w-full overflow-hidden text-center">
+              <Motion.h1 className="relative inline-block text-center">
+                {/* First Line - D Creates */}
+                <Motion.div
+                  variants={lineVariant}
+                  initial="hidden"
+                  animate={introDone ? "visible" : "hidden"}
+                  transition={{ delayChildren: 0, staggerChildren: 0.05 }}
+                  className="block font-bold text-5xl md:text-7xl lg:text-8xl"
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
-                  {char === " " ? "\u00A0" : char}
-                </Motion.span>
-              ))}
-            </span>
+                  {"D Creates".split("").map((char, i) => (
+                    <Motion.span
+                      key={i}
+                      variants={letterVariant}
+                      className="inline-block"
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </Motion.span>
+                  ))}
+                </Motion.div>
 
-            {/* Line 2 */}
-            <span className="block text-4xl md:text-5xl lg:text-6xl ">
-              {"Where Innovation Meets".split("").map((char, i) => (
-                <Motion.span
-                  key={i}
-                  variants={letterVariant}
-                  className="inline-block"
+                {/* Second Line - Cursive */}
+                <Motion.div
+                  variants={lineVariant}
+                  initial="hidden"
+                  animate={introDone ? "visible" : "hidden"}
+                  transition={{ delayChildren: 0.8, staggerChildren: 0.05 }}
+                  className="mt-6 block text-5xl md:text-6xl lg:text-6xl"
+                  style={{ fontFamily: "'Eagle-lake'" }}
                 >
-                  {char === " " ? "\u00A0" : char}
-                </Motion.span>
-              ))}
-            </span>
-            <span className="block text-4xl md:text-6xl lg:text-7xl ">
-              {"Excellence.".split("").map((char, i) => (
-                <Motion.span
-                  key={i}
-                  variants={letterVariant}
-                  className="inline-block"
-                >
-                  {char === " " ? "\u00A0" : char}
-                </Motion.span>
-              ))}
-            </span>
-          </Motion.h1>
-        </div>
+                  {"Where Innovation Meets Excellence.".split("").map(
+                    (char, i) => (
+                      <Motion.span
+                        key={i}
+                        variants={letterVariant}
+                        className="inline-block"
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </Motion.span>
+                    )
+                  )}
+                </Motion.div>
+              </Motion.h1>
+            </div>
 
-        {/* Subtitle */}
-        <p className="mx-auto mb-8 mt-5 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
-          We design and build high-performance digital products across web, AI,
-          and automation, helping teams move faster with clear architecture and
-          polished execution.
-        </p>
+            {/* Subtitle */}
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
+              We design and build high-performance digital products across web,
+              AI, and automation, helping teams move faster with clear
+              architecture and polished execution.
+            </p>
+            {/* Buttons */}
+            <div className="flex w-full max-w-sm flex-row justify-center gap-3 sm:max-w-none sm:gap-4 pt-10">
+              <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100 md:w-20/100">
+                Start a Project
+              </button>
 
-        {/* Buttons */}
-        <div className="flex w-full max-w-sm flex-row justify-center gap-3 sm:max-w-none sm:flex-row sm:gap-4">
-          <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100 md:w-20/100">
-            Start a Project
-          </button>
+              <button className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
+                View Case Studies
+              </button>
+            </div>
+          </div>
 
-          <button className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
-            View Case Studies
-          </button>
-        </div>
+          <div className="mt-auto flex w-full flex-col items-center gap-8 pb-2 pt-2">
+            
 
-        <div className="mt-10 w-full">
-          <div className="grid grid-cols-3 rounded-md text-center text-sm text-slate-300 sm:mt-0 sm:divide-x sm:divide-white/15">
-            {stats.map((stat, index) => (
-              <Motion.div
-                key={index}
-                onViewportEnter={() => handleStatInView(index)}
-                viewport={{ once: true }}
-                className="flex flex-col items-center justify-center gap-0.5 px-1 py-2 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
-              >
-                <p className="text-xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
-                  {stat.prefix || ""}
-                  <CounterDisplay
-                    target={stat.value}
-                    suffix={stat.suffix}
-                    isVisible={visibleIndices.has(index)}
-                  />
-                </p>
-                <p className="text-[10px] leading-tight text-slate-300 sm:text-sm">
-                  {stat.label}
-                </p>
-              </Motion.div>
-            ))}
+            <div className="w-full">
+              <div className="grid grid-cols-3 rounded-md text-center text-sm text-slate-300 sm:mt-0 sm:divide-x sm:divide-white/15">
+                {stats.map((stat, index) => (
+                  <Motion.div
+                    key={index}
+                    onViewportEnter={() => handleStatInView(index)}
+                    viewport={{ once: true }}
+                    className="flex flex-col items-center justify-center gap-0.5 px-1 py-2 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
+                  >
+                    <p className="text-xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
+                      {stat.prefix || ""}
+                      <CounterDisplay
+                        target={stat.value}
+                        suffix={stat.suffix}
+                        isVisible={visibleIndices.has(index)}
+                      />
+                    </p>
+                    <p className="text-[10px] leading-tight text-slate-300 sm:text-sm">
+                      {stat.label}
+                    </p>
+                  </Motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </Motion.div>
