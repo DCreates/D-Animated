@@ -32,7 +32,7 @@ export default function Partners() {
         <div className="flex items-center gap-8 lg:gap-12">
           {/* Left: "Our Clients" Text */}
           <div className="flex-shrink-0">
-            <h2 className="text-2xl md:text-2xl lg:text-4xl font-bold text-white whitespace-nowrap">
+            <h2 className="text-1xl md:text-2xl lg:text-4xl font-bold text-white whitespace-nowrap">
               Our  Clients | 
             </h2>
           </div>
@@ -51,7 +51,7 @@ export default function Partners() {
                 <img
                   key={i}
                   src={logo}
-                  className="h-12 object-contain opacity-70 hover:opacity-100 transition"
+                  className="h-10 md:h-12 lg:h-16 object-contain opacity-70 hover:opacity-100 transition"
                 />
               ))}
             </div>

@@ -67,7 +67,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden bg-black px-6 py-24 sm:px-10 lg:px-16"
+      className="relative w-full overflow-hidden bg-black px-6 py-3 sm:px-10 sm:py-6 lg:px-16 lg:py-24"
     >
 
       {/* Soft Parallax Backgrounds */}

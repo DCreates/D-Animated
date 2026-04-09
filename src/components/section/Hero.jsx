@@ -40,12 +40,7 @@ const CounterDisplay = ({ target, suffix, isVisible }) => {
   );
 };
 
-
-const TITLE_LINES = [
-  "At D Creates,",
-  "we engineer smart",
-  "digital ecosystems.",
-];
+const TITLE_LINES = ["D Creates,", "Where Innovation Meets Excellence."];
 
 const lineVariant = {
   hidden: {},
@@ -59,8 +54,8 @@ const lineVariant = {
 const letterVariant = {
   hidden: {
     opacity: 0,
-    y: 100,
-    filter: "blur(3px)",
+    y: 80,
+    filter: "blur(6px)",
     textShadow: "0 0 0px rgba(255,255,255,0)",
   },
   visible: {
@@ -69,18 +64,21 @@ const letterVariant = {
     filter: "blur(0px)",
     textShadow: [
       "0 0 0px rgba(255,255,255,0)",
-      "0 0 14px rgba(255,255,255,0.9)",
-      "0 0 6px rgba(255,255,255,0.45)",
-      "0 0 0px rgba(255,255,255,0)",
+      "0 0 18px rgba(255,255,255,1)",
+      "0 0 8px rgba(255,255,255,0.6)",
+      "0 0 0px rgba(255,255,255,0)", // 👈 ends CLEAN (no shine)
     ],
-    transition: { duration: 0.36, ease: "easeOut" },
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
   },
 };
 
 const stats = [
   { label: "User Active", value: 380, suffix: "+" },
   { label: "Trusted by Company", value: 230, suffix: "+" },
-  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" }
+  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" },
 ];
 
 export default function Hero({ introDone = true }) {
@@ -89,9 +87,6 @@ export default function Hero({ introDone = true }) {
   const handleStatInView = (index) => {
     setVisibleIndices((prev) => new Set([...prev, index]));
   };
-
-  const titleBaseClass =
-    "text-4xl font-bold leading-[1.12] tracking-tight md:text-6xl lg:text-7xl";
 
   return (
     <section
@@ -117,91 +112,109 @@ export default function Hero({ introDone = true }) {
         initial={{ opacity: 0, y: 40 }}
         animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center justify-center px-4 pb-12 pt-28 text-center sm:px-10 sm:pb-20 sm:pt-36"
+        className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-start px-4 pb-8 pt-24 text-center sm:px-10 sm:pb-20 sm:pt-36"
       >
-        {/* Rating */}
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[11px] font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] sm:mb-8 sm:px-4 sm:py-2 sm:text-xs">
-          {/* <span className="text-amber-300">★★★★★</span> */}
+        <div className="flex w-full flex-1 flex-col items-center gap-8">
+          <div className="flex w-full flex-1 flex-col items-center justify-center">
+            {/* Rating */}
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[11px] font-medium tracking-[0.08em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] sm:mb-8 sm:px-4 sm:py-2 sm:text-xs">
+              {/* <span className="text-amber-300">★★★★★</span> */}
 
-          <span>100% Client Satisfaction</span>
-        </p>
+              <span>100% Client Satisfaction</span>
+            </p>
 
-        {/* Title */}
-        <div className="relative inline-block overflow-hidden">
-          {/* Base Text (dim) */}
-          <h1 className={`${titleBaseClass} text-white/45`}>
-            {TITLE_LINES.map((line) => (
-              <span key={`base-${line}`} className="block">
-                {line}
-              </span>
-            ))}
-          </h1>
+            {/* Title */}
+            <div className="relative inline-block w-full overflow-hidden text-center">
+              <Motion.h1 className="relative inline-block text-center">
+                {/* First Line - D Creates */}
+                <Motion.div
+                  variants={lineVariant}
+                  initial="hidden"
+                  animate={introDone ? "visible" : "hidden"}
+                  transition={{ delayChildren: 0, staggerChildren: 0.05 }}
+                  className="block font-bold text-5xl md:text-7xl lg:text-8xl"
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  {"D Creates".split("").map((char, i) => (
+                    <Motion.span
+                      key={i}
+                      variants={letterVariant}
+                      className="inline-block"
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </Motion.span>
+                  ))}
+                </Motion.div>
 
-          {/* Animated Overlay */}
-          <Motion.h1
-            className={`absolute inset-0 ${titleBaseClass} text-white`}
-            initial="hidden"
-            animate={introDone ? "visible" : "hidden"}
-          >
-            {TITLE_LINES.map((line, lineIndex) => (
-              <Motion.span
-                key={line}
-                variants={lineVariant}
-                className="block"
-                transition={{ delayChildren: lineIndex * 0.2 }}
-              >
-                {line.split("").map((char, charIndex) => (
-                  <Motion.span
-                    key={`${lineIndex}-${charIndex}-${char}`}
-                    variants={letterVariant}
-                    className="inline-block"
+                {/* Second Line - Cursive */}
+                <Motion.div
+                  variants={lineVariant}
+                  initial="hidden"
+                  animate={introDone ? "visible" : "hidden"}
+                  transition={{ delayChildren: 0.8, staggerChildren: 0.05 }}
+                  className="mt-6 block text-5xl md:text-6xl lg:text-6xl"
+                  style={{ fontFamily: "'Eagle-lake'" }}
+                >
+                  {"Where Innovation Meets Excellence.".split("").map(
+                    (char, i) => (
+                      <Motion.span
+                        key={i}
+                        variants={letterVariant}
+                        className="inline-block"
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </Motion.span>
+                    )
+                  )}
+                </Motion.div>
+              </Motion.h1>
+            </div>
+
+            {/* Subtitle */}
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
+              We design and build high-performance digital products across web,
+              AI, and automation, helping teams move faster with clear
+              architecture and polished execution.
+            </p>
+            {/* Buttons */}
+            <div className="flex w-full max-w-sm flex-row justify-center gap-3 sm:max-w-none sm:gap-4 pt-10">
+              <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100 md:w-20/100">
+                Start a Project
+              </button>
+
+              <button className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
+                View Case Studies
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-auto flex w-full flex-col items-center gap-8 pb-2 pt-2">
+            
+
+            <div className="w-full">
+              <div className="grid grid-cols-3 rounded-md text-center text-sm text-slate-300 sm:mt-0 sm:divide-x sm:divide-white/15">
+                {stats.map((stat, index) => (
+                  <Motion.div
+                    key={index}
+                    onViewportEnter={() => handleStatInView(index)}
+                    viewport={{ once: true }}
+                    className="flex flex-col items-center justify-center gap-0.5 px-1 py-2 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
                   >
-                    {char === " " ? "\u00A0" : char}
-                  </Motion.span>
+                    <p className="text-xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
+                      {stat.prefix || ""}
+                      <CounterDisplay
+                        target={stat.value}
+                        suffix={stat.suffix}
+                        isVisible={visibleIndices.has(index)}
+                      />
+                    </p>
+                    <p className="text-[10px] leading-tight text-slate-300 sm:text-sm">
+                      {stat.label}
+                    </p>
+                  </Motion.div>
                 ))}
-              </Motion.span>
-            ))}
-          </Motion.h1>
-        </div>
-
-        {/* Subtitle */}
-        <p className="mx-auto mb-8 mt-5 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
-          We design and build high-performance digital products across web, AI,
-          and automation, helping teams move faster with clear architecture and
-          polished execution.
-        </p>
-
-        {/* Buttons */}
-        <div className="flex w-full max-w-sm flex-row justify-center gap-3 sm:max-w-none sm:flex-row sm:gap-4">
-          <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100 md:w-20/100">
-            Start a Project
-          </button>
-
-          <button className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
-            View Case Studies
-          </button>
-        </div>
-
-        <div className="mt-10 w-full">
-          <div className="grid grid-cols-3 rounded-md text-center text-sm text-slate-300 sm:mt-0 sm:divide-x sm:divide-white/15">
-            {stats.map((stat, index) => (
-              <Motion.div
-                key={index}
-                onViewportEnter={() => handleStatInView(index)}
-                viewport={{ once: true }}
-                className="flex flex-col items-center justify-center gap-0.5 px-1 py-2 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
-              >
-                <p className="text-xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
-                  {stat.prefix || ""}
-                  <CounterDisplay
-                    target={stat.value}
-                    suffix={stat.suffix}
-                    isVisible={visibleIndices.has(index)}
-                  />
-                </p>
-                <p className="text-[10px] leading-tight text-slate-300 sm:text-sm">{stat.label}</p>
-              </Motion.div>
-            ))}
+              </div>
+            </div>
           </div>
         </div>
       </Motion.div>
