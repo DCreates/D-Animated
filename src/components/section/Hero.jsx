@@ -3,11 +3,6 @@ import { useState, useEffect } from "react";
 
 const CounterDisplay = ({ target, suffix, isVisible }) => {
   const [count, setCount] = useState(0);
-  
-
-
-  
-
 
   useEffect(() => {
     if (!isVisible) return;
@@ -52,10 +47,7 @@ const stats = [
 ];
 
 export default function Hero({ introDone = true }) {
-
-  const text = "Where Innovation Meets Excellence.";
-
-  const words = text.split(" ");
+  const taglineWords = "Where innovative Meets Excellence".split(" ");
 
   const [visibleIndices, setVisibleIndices] = useState(new Set());
 
@@ -102,7 +94,7 @@ export default function Hero({ introDone = true }) {
             {/* Main Title */}
             <Motion.h1
               initial="hidden"
-              animate="visible"
+              animate={introDone ? "visible" : "hidden"}
               variants={{
                 visible: {
                   transition: {
@@ -112,14 +104,14 @@ export default function Hero({ introDone = true }) {
               }}
               className="font-bold text-5xl md:text-7xl lg:text-8xl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
             >
-              {"D Creates".split("").map((char, i) => (
+              {"D Create".split("").map((char, i) => (
                 <Motion.span
                   key={i}
                   variants={{
                     hidden: { opacity: 0, y: 40 },
                     visible: { opacity: 1, y: 0 },
                   }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.8 }}
                 >
                   {char}
                 </Motion.span>
@@ -129,26 +121,26 @@ export default function Hero({ introDone = true }) {
             {/* Tagline */}
             <Motion.p
               initial="hidden"
-              animate="visible"
+              animate={introDone ? "visible" : "hidden"}
               variants={{
                 visible: {
                   transition: {
-                    staggerChildren: 0.12,
-                    delayChildren: 0.4,
+                    staggerChildren: 0.08,
+                    delayChildren: 0.5,
                   },
                 },
               }}
-              className="mt-4 text-lg md:text-2xl lg:text-3xl text-slate-300"
+              className="mt-4 text-4xl md:text-6xl font-medium text-white/90 flex flex-wrap justify-center gap-x-3"
             >
-              {words.map((word, i) => (
+              {taglineWords.map((word, i) => (
                 <Motion.span
                   key={i}
-                  className="inline-block mr-2"
                   variants={{
-                    hidden: { opacity: 0, y: 20 },
+                    hidden: { opacity: 0, y: 15 },
                     visible: { opacity: 1, y: 0 },
                   }}
                   transition={{ duration: 0.4 }}
+                  className="inline-block"
                 >
                   {word}
                 </Motion.span>
