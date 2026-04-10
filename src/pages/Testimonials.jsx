@@ -40,33 +40,38 @@ export default function PremiumTestimonials() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Side: Image Stack */}
-          <div className="lg:col-span-5 relative h-[400px] flex items-center justify-center">
-            <div className="relative w-full h-full flex items-center justify-center">
-              {testimonials.map((item, index) => {
-                const isActive = index === active;
-                
-                return (
-                  <div
-                    key={item.id}
-                    onClick={() => { setActive(index); setIsAutoPlaying(false); }}
-                    className={`absolute transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer
-                      ${isActive ? "z-30 scale-100 opacity-100" : "z-10 scale-75 opacity-20 blur-[2px] hover:opacity-40"}
-                    `}
-                    style={{
-                      transform: `translateX(${(index - active) * 120}px) translateZ(0)`,
-                    }}
-                  >
-                    <div className={`relative rounded-3xl overflow-hidden p-[1px] ${isActive ? 'bg-gradient-to-b from-white/20 to-transparent shadow-2xl shadow-white/5' : ''}`}>
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className={`w-64 h-80 object-cover rounded-3xl transition-filter duration-700 ${isActive ? 'grayscale-0' : 'grayscale'}`}
-                      />
-                    </div>
+          <div className="lg:col-span-5 relative h-[400px] flex items-center justify-center overflow-hidden">
+            {testimonials.map((item, index) => {
+              const isActive = index === active;
+              const offset = index - active;
+
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => {
+                    setActive(index);
+                    setIsAutoPlaying(false);
+                  }}
+                  className="absolute transition-all duration-700 ease-out cursor-pointer"
+                  style={{
+                    transform: `
+                      translateX(${offset * 140}px)
+                      scale(${isActive ? 1 : 0.85})
+                    `,
+                    zIndex: isActive ? 30 : 10,
+                    opacity: Math.abs(offset) > 2 ? 0 : isActive ? 1 : 0.4,
+                  }}
+                >
+                  <div className="rounded-3xl overflow-hidden shadow-xl border border-white/10">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-64 h-80 object-cover"
+                    />
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* Right Side: Content Card */}

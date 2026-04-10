@@ -110,7 +110,7 @@ const Navbar = () => {
         >
           <motion.img
             layoutId="brand-logo"
-            src="/images/DCreates.svg"
+            src="/images/d lg.svg"
             alt="Globus Logo"
             transition={{ type: "spring", stiffness: 240, damping: 24 }}
             className="h-5 w-auto object-contain"
