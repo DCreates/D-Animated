@@ -102,12 +102,12 @@ function StatCard({ item }) {
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm text-white/60">{item.label}</p>
-          <p className="mt-2 text-2xl font-semibold tracking-tight text-white">
+          <p className="text-[12px] text-white/60">{item.label}</p>
+          <p className="mt-2 text-[15px] font-semibold tracking-tight text-white">
             {item.value}
           </p>
         </div>
-        <div className="flex h-15 w-15 items-center text-2xl justify-center rounded-2xl border border-white/10 bg-white/5 text-white/90 transition-transform duration-300 group-hover:scale-105">
+        <div className="flex h-12 w-13 items-center text-1xl justify-center rounded-xl border border-white/10 bg-white/5 text-white/90 transition-transform duration-300 group-hover:scale-105">
           <Icon />
         </div>
       </div>
@@ -254,18 +254,18 @@ export default function ServiceDetail() {
                 {service.description}
               </Motion.p>
 
-              <Motion.div variants={fadeUp} className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <button className="inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_45px_rgba(255,255,255,0.18)]">
+              <Motion.div variants={fadeUp} className="mt-8 flex flex-col gap-4 grid grid-cols-2 sm:flex-row">
+                <button className="inline-flex h-10 items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_45px_rgba(255,255,255,0.18)]">
                   Start Project
                 </button>
-                <button className="inline-flex h-14 items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/10">
-                  Explore Capabilities
+                <button className="inline-flex h-10 items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 text-[13px] font-bold text-white backdrop-blur-xl transition-all hover:bg-white/10">
+                  Explore Projucts
                 </button>
               </Motion.div>
 
               <Motion.div
                 variants={fadeUp}
-                className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+                className="mt-10 grid gap-2 grid-cols-2 sm:grid-cols-2 xl:grid-cols-2"
               >
                 {qualityStats.map((item, idx) => (
                   <StatCard key={idx} item={item} />
@@ -300,10 +300,10 @@ export default function ServiceDetail() {
                         <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.3)_48%,rgba(0,0,0,0.05)_100%)]" />
 
                         <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-3 sm:left-6 sm:right-6 sm:top-6">
-                          <span className="rounded-full border border-white/10 bg-black/30 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-white/70 backdrop-blur-xl sm:px-4">
+                          <span className="rounded-full border border-white/10 bg-black/30 px-3 py-2 text-[8px] font-bold uppercase tracking-[0.14em] text-white/70 backdrop-blur-xl sm:px-4">
                             Featured Result
                           </span>
-                          <span className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-white/80 backdrop-blur-xl sm:px-4">
+                          <span className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-[8px] font-bold uppercase tracking-[0.14em] text-white/80 backdrop-blur-xl sm:px-4">
                             Quality-Checked
                           </span>
                         </div>
