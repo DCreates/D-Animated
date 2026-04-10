@@ -30,12 +30,12 @@ export default function AiBusinessSection() {
   };
 
   return (
-    <section className="relative bg-black px-6 py-24 text-white sm:px-10 lg:px-16 overflow-hidden">
+    <section className="relative bg-black px-6 py-15 text-white sm:px-10 lg:px-16 overflow-hidden">
       
       {/* 🔥 Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         
         {/* LEFT SIDE */}
         <div className="space-y-6">
@@ -57,19 +57,19 @@ export default function AiBusinessSection() {
                   <Motion.div
                     whileHover={{ scale: 1.2, rotate: -8 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="relative"
+                    className="relative px-5 py-7 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition"
                   >
-                    <div className="w-22 h-22 rounded-2xl bg-white/20 border border-white/20 flex items-center justify-center backdrop-blur-md group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition">
-                      <Icon className="w-11 h-11 text-white/90" />
+                    <div className="w-15 h-15 rounded-2xl border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition">
+                      <Icon className="w-9 h-9 text-white/90" />
                     </div>
                   </Motion.div>
 
                   {/* TEXT */}
                   <div>
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-[17px] font-semibold text-white">
                       {card.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-slate-300">
+                    <p className="mt-2 text-[12px] leading-5 text-slate-300">
                       {card.description}
                     </p>
                   </div>
