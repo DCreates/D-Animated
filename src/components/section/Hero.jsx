@@ -68,7 +68,7 @@ export default function Hero({ introDone = true }) {
           src="/images/globe.png"
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-260 w-360 -translate-x-1/2 -translate-y-2/5 object-contain opacity-55"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-260 w-500 -translate-x-1/2 -translate-y-2/6 object-contain opacity-75"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_52%)]" />
         <div className="absolute inset-x-0 bottom-0 h-[15%] bg-linear-to-b from-transparent to-black" />
@@ -104,7 +104,7 @@ export default function Hero({ introDone = true }) {
               }}
               className="font-bold text-5xl md:text-7xl lg:text-8xl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
             >
-              {"D Create".split("").map((char, i) => (
+              {"D Create Empire".split("").map((char, i) => (
                 <Motion.span
                   key={i}
                   variants={{
@@ -120,27 +120,15 @@ export default function Hero({ introDone = true }) {
 
             {/* Tagline */}
             <Motion.p
-              initial="hidden"
-              animate={introDone ? "visible" : "hidden"}
-              variants={{
-                visible: {
-                  transition: {
-                    staggerChildren: 0.08,
-                    delayChildren: 0.5,
-                  },
-                },
-              }}
+              
               className="mt-4 text-4xl md:text-6xl font-medium text-white/90 flex flex-wrap justify-center gap-x-3"
             >
               {taglineWords.map((word, i) => (
                 <Motion.span
                   key={i}
-                  variants={{
-                    hidden: { opacity: 0, y: 15 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  transition={{ duration: 0.4 }}
-                  className="inline-block"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                  transition={{ duration: 0.8 }}
                 >
                   {word}
                 </Motion.span>
