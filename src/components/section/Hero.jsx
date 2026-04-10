@@ -40,41 +40,6 @@ const CounterDisplay = ({ target, suffix, isVisible }) => {
   );
 };
 
-const TITLE_LINES = ["D Creates,", "Where Innovation Meets Excellence."];
-
-const lineVariant = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-};
-
-const letterVariant = {
-  hidden: {
-    opacity: 0,
-    y: 80,
-    filter: "blur(6px)",
-    textShadow: "0 0 0px rgba(255,255,255,0)",
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    textShadow: [
-      "0 0 0px rgba(255,255,255,0)",
-      "0 0 18px rgba(255,255,255,1)",
-      "0 0 8px rgba(255,255,255,0.6)",
-      "0 0 0px rgba(255,255,255,0)", // 👈 ends CLEAN (no shine)
-    ],
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
 const stats = [
   { label: "User Active", value: 380, suffix: "+" },
   { label: "Trusted by Company", value: 230, suffix: "+" },
@@ -82,6 +47,8 @@ const stats = [
 ];
 
 export default function Hero({ introDone = true }) {
+  const taglineWords = "Where innovative Meets Excellence".split(" ");
+
   const [visibleIndices, setVisibleIndices] = useState(new Set());
 
   const handleStatInView = (index) => {
@@ -124,51 +91,61 @@ export default function Hero({ introDone = true }) {
             </p>
 
             {/* Title */}
-            <div className="relative inline-block w-full overflow-hidden text-center">
-              <Motion.h1 className="relative inline-block text-center">
-                {/* First Line - D Creates */}
-                <Motion.div
-                  variants={lineVariant}
-                  initial="hidden"
-                  animate={introDone ? "visible" : "hidden"}
-                  transition={{ delayChildren: 0, staggerChildren: 0.05 }}
-                  className="block font-bold text-5xl md:text-7xl lg:text-8xl"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+            {/* Main Title */}
+            <Motion.h1
+              initial="hidden"
+              animate={introDone ? "visible" : "hidden"}
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.08, // 👈 controls wave speed
+                  },
+                },
+              }}
+              className="font-bold text-5xl md:text-7xl lg:text-8xl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+            >
+              {"D Create".split("").map((char, i) => (
+                <Motion.span
+                  key={i}
+                  variants={{
+                    hidden: { opacity: 0, y: 40 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.8 }}
                 >
-                  {"D Creates".split("").map((char, i) => (
-                    <Motion.span
-                      key={i}
-                      variants={letterVariant}
-                      className="inline-block"
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </Motion.span>
-                  ))}
-                </Motion.div>
+                  {char}
+                </Motion.span>
+              ))}
+            </Motion.h1>
 
-                {/* Second Line - Cursive */}
-                <Motion.div
-                  variants={lineVariant}
-                  initial="hidden"
-                  animate={introDone ? "visible" : "hidden"}
-                  transition={{ delayChildren: 0.8, staggerChildren: 0.05 }}
-                  className="mt-6 block text-5xl md:text-6xl lg:text-6xl"
-                  style={{ fontFamily: "'Eagle-lake'" }}
+            {/* Tagline */}
+            <Motion.p
+              initial="hidden"
+              animate={introDone ? "visible" : "hidden"}
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.08,
+                    delayChildren: 0.5,
+                  },
+                },
+              }}
+              className="mt-4 text-4xl md:text-6xl font-medium text-white/90 flex flex-wrap justify-center gap-x-3"
+            >
+              {taglineWords.map((word, i) => (
+                <Motion.span
+                  key={i}
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.4 }}
+                  className="inline-block"
                 >
-                  {"Where Innovation Meets Excellence.".split("").map(
-                    (char, i) => (
-                      <Motion.span
-                        key={i}
-                        variants={letterVariant}
-                        className="inline-block"
-                      >
-                        {char === " " ? "\u00A0" : char}
-                      </Motion.span>
-                    )
-                  )}
-                </Motion.div>
-              </Motion.h1>
-            </div>
+                  {word}
+                </Motion.span>
+              ))}
+            </Motion.p>
 
             {/* Subtitle */}
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
@@ -189,8 +166,6 @@ export default function Hero({ introDone = true }) {
           </div>
 
           <div className="mt-auto flex w-full flex-col items-center gap-8 pb-2 pt-2">
-            
-
             <div className="w-full">
               <div className="grid grid-cols-3 rounded-md text-center text-sm text-slate-300 sm:mt-0 sm:divide-x sm:divide-white/15">
                 {stats.map((stat, index) => (
