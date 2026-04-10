@@ -201,13 +201,13 @@ function InteractiveCard({ item }) {
 
         <div className="flex items-end justify-between mt-[-30px]">
           <div>
-            <span className="block text-[10px] text-zinc-400 uppercase tracking-widest font-bold mb-2">Monthly Tier</span>
+            <span className="block text-[10px] text-zinc-400 uppercase tracking-widest font-bold mb-2">Project Price</span>
             <div className="flex items-baseline gap-1">
-              <span className="text-[22px] md:text-3xl font-bold text-white tracking-tighter">{item.price}</span>
+              <span className="text-[20px] md:text-3xl font-bold text-white tracking-tighter">{item.price}</span>
             </div>
           </div>
           
-          <button className="flex items-center justify-center h-10 px-6 gap-2 rounded-2xl bg-white text-black font-bold text-sm hover:bg-blue-500 hover:text-white transition-all group/btn">
+          <button className="flex items-center justify-center h-9 px-4 gap-2 rounded-2xl bg-white text-black font-bold text-sm hover:bg-blue-500 hover:text-white transition-all group/btn">
             Provision
             <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
           </button>
