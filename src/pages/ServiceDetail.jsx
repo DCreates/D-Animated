@@ -98,7 +98,7 @@ function StatCard({ item }) {
   return (
     <Motion.div
       variants={cardLift}
-      className="group rounded-[28px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+      className="group rounded-[20px] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -107,7 +107,7 @@ function StatCard({ item }) {
             {item.value}
           </p>
         </div>
-        <div className="flex h-12 w-13 items-center text-1xl justify-center rounded-xl border border-white/10 bg-white/5 text-white/90 transition-transform duration-300 group-hover:scale-105">
+        <div className="flex py-8 h-13 w-13 items-center text-2xl justify-center rounded-xl border border-white/10 bg-white/5 text-white/90 transition-transform duration-300 group-hover:scale-105">
           <Icon />
         </div>
       </div>
@@ -122,27 +122,30 @@ function ServicePointCard({ item }) {
     <Motion.div
       variants={cardLift}
       whileHover={{ y: -6 }}
-      className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#0f0f13] p-4 sm:p-6 transition-all duration-300 hover:border-white/20 hover:bg-[#14141a]"
+      className="group relative overflow-hidden rounded-[18px] border border-white/10 bg-[#0f0f13] p-4 sm:p-6 transition-all duration-300 hover:border-white/20 hover:bg-[#14141a]"
     >
       {/* Glow effect */}
       <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <div className="absolute -inset-1 bg-gradient-to-br from-white/10 via-transparent to-white/5 blur-xl" />
       </div>
 
-      {/* Icon */}
-      <div className="relative z-10 mb-4 flex h-14 w-14 sm:h-15 sm:w-15 items-center justify-center rounded-xl bg-white/5 text-white/80 ring-1 ring-white/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/10">
-        <Icon className="text-2xl sm:text-3xl" />
+      <div className="flex items-start justify-between gap-10 relative">
+          {/* Icon */}
+        <div className="relative mb-2 flex h-17 w-27 sm:h-15 sm:w-15 items-center justify-center rounded-xl bg-white/5 text-white/80 ring-1 ring-white/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/10">
+          <Icon className="text-3xl sm:text-3xl" />
+        </div>
+        <div>
+            {/* Title */}
+          <h3 className="relative text-sm sm:text-lg font-semibold text-white">
+            {item.title}
+          </h3>
+
+          {/* Description */}
+          <p className="relative mt-2 text-xs sm:text-sm leading-5 text-white/60">
+            {item.desc}
+          </p>
+        </div>
       </div>
-
-      {/* Title */}
-      <h3 className="relative z-10 text-sm sm:text-lg font-semibold text-white">
-        {item.title}
-      </h3>
-
-      {/* Description */}
-      <p className="relative z-10 mt-2 text-xs sm:text-sm leading-6 text-white/60">
-        {item.desc}
-      </p>
     </Motion.div>
   );
 }

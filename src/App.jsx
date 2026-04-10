@@ -12,6 +12,7 @@ import Services from "./pages/Services";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import ServiceDetail from "./pages/ServiceDetail";
+import Newproduct from "./pages/Newproduct";
 
 function App() {
   const [isIntroActive, setIsIntroActive] = useState(true);
@@ -31,6 +32,7 @@ function App() {
                 <Partners />
                 <About />
                 <Services />
+                <Newproduct />
                 <Testimonials />
                 <Contact />
               </>

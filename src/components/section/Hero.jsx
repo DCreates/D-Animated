@@ -41,9 +41,9 @@ const CounterDisplay = ({ target, suffix, isVisible }) => {
 };
 
 const stats = [
-  { label: "User Active", value: 380, suffix: "+" },
-  { label: "Trusted by Company", value: 230, suffix: "+" },
-  { label: "Transaction", value: 230, suffix: "M+", prefix: "$" },
+  { label: "User Active", value: 280, suffix: "+" },
+  { label: "Trusted by Company", value: 128, suffix: "+" },
+  { label: "Transaction", value: 3.5, suffix: "M+" },
 ];
 
 export default function Hero({ introDone = true }) {
@@ -68,7 +68,7 @@ export default function Hero({ introDone = true }) {
           src="/images/globe.png"
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-260 w-500 -translate-x-1/2 -translate-y-2/6 object-contain opacity-75"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-60 w-500 md:h-390 -translate-x-1/2 -translate-y-2/6 object-contain opacity-85"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_52%)]" />
         <div className="absolute inset-x-0 bottom-0 h-[15%] bg-linear-to-b from-transparent to-black" />
@@ -102,9 +102,9 @@ export default function Hero({ introDone = true }) {
                   },
                 },
               }}
-              className="font-bold text-5xl md:text-7xl lg:text-8xl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              className="font-bold text-[47px] md:text-8xl lg:text-8xl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
             >
-              {"D Create Empire".split("").map((char, i) => (
+              {"D - Create Empire".split("").map((char, i) => (
                 <Motion.span
                   key={i}
                   variants={{
@@ -121,7 +121,7 @@ export default function Hero({ introDone = true }) {
             {/* Tagline */}
             <Motion.p
               
-              className="mt-4 text-4xl md:text-6xl font-medium text-white/90 flex flex-wrap justify-center gap-x-3"
+              className="mt-1 text-3xl md:text-[50px] font-medium text-white/90 flex flex-wrap justify-center gap-x-3"
             >
               {taglineWords.map((word, i) => (
                 <Motion.span
@@ -136,24 +136,24 @@ export default function Hero({ introDone = true }) {
             </Motion.p>
 
             {/* Subtitle */}
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
               We design and build high-performance digital products across web,
               AI, and automation, helping teams move faster with clear
               architecture and polished execution.
             </p>
             {/* Buttons */}
             <div className="flex w-full max-w-sm flex-row justify-center gap-3 sm:max-w-none sm:gap-4 pt-10">
-              <button className="rounded-xl bg-white px-7 py-3.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100 md:w-20/100">
+              <button className="rounded-4xl bg-white px-7 py-2 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100 md:w-20/100">
                 Start a Project
               </button>
 
-              <button className="rounded-xl border border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
+              <button className="rounded-4xl border border-white/30 bg-white/5 px-7 py-2 font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10">
                 View Case Studies
               </button>
             </div>
           </div>
 
-          <div className="mt-auto flex w-full flex-col items-center gap-8 pb-2 pt-2">
+          <div className="mt-5 flex w-full flex-col items-center gap-8 pb-10 pt-2">
             <div className="w-full">
               <div className="grid grid-cols-3 rounded-md text-center text-sm text-slate-300 sm:mt-0 sm:divide-x sm:divide-white/15">
                 {stats.map((stat, index) => (
@@ -161,7 +161,7 @@ export default function Hero({ introDone = true }) {
                     key={index}
                     onViewportEnter={() => handleStatInView(index)}
                     viewport={{ once: true }}
-                    className="flex flex-col items-center justify-center gap-0.5 px-1 py-2 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
+                    className="flex flex-col items-center justify-center gap-0.5 px-1 py-15 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
                   >
                     <p className="text-xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
                       {stat.prefix || ""}

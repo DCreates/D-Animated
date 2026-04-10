@@ -67,7 +67,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden bg-black px-6 py-3 sm:px-10 sm:py-6 lg:px-16 lg:py-24"
+      className="relative w-full overflow-hidden bg-black px-6 py-9 sm:px-10 sm:py-6 lg:px-16 lg:py-24"
     >
 
       {/* Soft Parallax Backgrounds */}
@@ -94,7 +94,7 @@ export default function AboutSection() {
             About D Create
           </p>
 
-          <h2 className="mb-6 text-3xl font-bold leading-tight text-white md:text-5xl">
+          <h2 className="mb-2 text-3xl font-bold leading-tight text-white md:text-5xl">
             We build powerful digital experiences
           </h2>
 
@@ -110,7 +110,7 @@ export default function AboutSection() {
           </p>
           <button
             onClick={scrollToServices}
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white px-5 py-2.5 text-sm font-bold tracking-[0.10em] text-black backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] transition hover:bg-white/20 hover:text-amber-50"
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white px-5 py-2.5 text-sm font-bold tracking-[0.10em] text-black backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)] transition hover:bg-white/20 hover:text-amber-50"
           >
             Explore Us
           </button>
@@ -120,7 +120,7 @@ export default function AboutSection() {
         {/* RIGHT SIDE (STATS GRID) */}
         <div className="gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-2">
 
-          <img src="/images/bgr.jpg" alt="D Create Logo" className="w-full rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl" />
+          <img src="/images/bgr.jpg" alt="D Create Logo" className="w-full rounded-2xl border border-white/20 bg-white/5  backdrop-blur-xl" />
           
 
         </div>
