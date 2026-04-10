@@ -19,20 +19,20 @@ export default function Partners() {
   ];
 
   return (
-    <section className="bg-black px-6 py-16 sm:px-10 lg:px-16">
+    <section className="bg-black px-4 py-10 sm:px-10 lg:px-16">
       <div className="mx-auto w-full max-w-7xl">
         {/* Title - Top Center */}
-        <div className="mb-12 flex justify-center">
+        <div className="mb-6 flex justify-center">
           <h3 className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-5 py-2 text-xs font-medium tracking-[0.18em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
             Trusted by our clients
           </h3>
         </div>
 
         {/* Main Container: Our Clients + Marquee */}
-        <div className="flex items-center gap-8 lg:gap-12">
+        <div className="flex items-center gap-2 lg:gap-12">
           {/* Left: "Our Clients" Text */}
           <div className="flex-shrink-0">
-            <h2 className="text-1xl md:text-2xl lg:text-4xl font-bold text-white whitespace-nowrap">
+            <h2 className="text-1xl md:text-2xl lg:text-4xl font-bold text-white/70 whitespace-nowrap">
               Our  Clients | 
             </h2>
           </div>
@@ -51,7 +51,7 @@ export default function Partners() {
                 <img
                   key={i}
                   src={logo}
-                  className="h-10 md:h-12 lg:h-16 object-contain opacity-70 hover:opacity-100 transition"
+                  className="h-7 md:h-12 lg:h-16 object-contain opacity-70 hover:opacity-100 transition"
                 />
               ))}
             </div>
