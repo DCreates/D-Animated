@@ -55,12 +55,12 @@ export default function IntroAnimation({ onFinish }) {
 
         <Motion.img
           layoutId="brand-logo"
-          src="/images/DCreates.svg"
+          src="/images/d lg.svg"
           alt="Globus Logo"
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: shouldShowFill ? 1 : 0, scale: 1 }}
           transition={{ opacity: { duration: 0.25 }, scale: { duration: 0.35 } }}
-          className="relative h-16 w-auto object-contain sm:h-20"
+          className="relative h-8 w-auto object-contain sm:h-20"
         />
       </div>
     </Motion.div>
