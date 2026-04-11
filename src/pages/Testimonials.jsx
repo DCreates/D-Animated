@@ -25,11 +25,11 @@ export default function PremiumTestimonials() {
       <div className="w-full max-w-6xl">
         
         {/* Header Section */}
-        <div className="text-center mb-20">
+        <div className="text-center font-sans mb-20">
           <span className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-medium uppercase tracking-[0.2em] text-white/50 mb-6">
             Case Studies
           </span>
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white mb-6">
+          <h2 className="text-5xl md:text-[7rem] font-sans font-bold tracking-tighter mb-6 leading-[0.85] text-white mb-6">
             Voices of <span className="text-white/40">Innovation.</span>
           </h2>
           <p className="text-white/40 text-lg max-w-xl mx-auto font-light leading-relaxed">

@@ -102,7 +102,7 @@ export default function Hero({ introDone = true }) {
                   },
                 },
               }}
-              className="font-bold text-[47px] md:text-8xl lg:text-8xl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              className="text-7xl md:text-[7rem] font-bold font-sans tracking-tighter mb-4 leading-[0.80] text-white"
             >
               {"D - Create Empire".split("").map((char, i) => (
                 <Motion.span
@@ -121,7 +121,7 @@ export default function Hero({ introDone = true }) {
             {/* Tagline */}
             <Motion.p
               
-              className="mt-1 text-3xl md:text-[50px] font-medium text-white/90 flex flex-wrap justify-center gap-x-3"
+              className="mt-1 text-3xl font-sans md:text-[50px] font-medium text-white/90 flex flex-wrap justify-center gap-x-3"
             >
               {taglineWords.map((word, i) => (
                 <Motion.span
@@ -136,13 +136,13 @@ export default function Hero({ introDone = true }) {
             </Motion.p>
 
             {/* Subtitle */}
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-300 md:text-lg">
+            <p className="mx-auto mt-3 max-w-2xl text-sm font-sans leading-6 text-slate-300 md:text-lg">
               We design and build high-performance digital products across web,
               AI, and automation, helping teams move faster with clear
               architecture and polished execution.
             </p>
             {/* Buttons */}
-            <div className="flex w-full max-w-sm flex-row justify-center gap-3 sm:max-w-none sm:gap-4 pt-10">
+            <div className="flex font-sans w-full max-w-sm flex-row justify-center gap-3 sm:max-w-none sm:gap-4 pt-10">
               <button className="rounded-4xl bg-white px-7 py-2 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-slate-100 md:w-20/100">
                 Start a Project
               </button>
@@ -161,9 +161,9 @@ export default function Hero({ introDone = true }) {
                     key={index}
                     onViewportEnter={() => handleStatInView(index)}
                     viewport={{ once: true }}
-                    className="flex flex-col items-center justify-center gap-0.5 px-1 py-15 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
+                    className="flex flex-col items-center justify-center gap-0.5 px-1 py-20 text-center sm:flex-row sm:gap-2 sm:px-5 sm:py-3"
                   >
-                    <p className="text-xl font-bold text-white sm:text-6xl text-center justify-center align-middle">
+                    <p className="text-xl font-sans font-bold text-white sm:text-6xl text-center justify-center align-middle">
                       {stat.prefix || ""}
                       <CounterDisplay
                         target={stat.value}
@@ -171,7 +171,7 @@ export default function Hero({ introDone = true }) {
                         isVisible={visibleIndices.has(index)}
                       />
                     </p>
-                    <p className="text-[10px] leading-tight text-slate-300 sm:text-sm">
+                    <p className="text-[10px]  leading-tight text-slate-300 sm:text-sm">
                       {stat.label}
                     </p>
                   </Motion.div>

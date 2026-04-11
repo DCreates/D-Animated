@@ -174,7 +174,7 @@ function InteractiveCard({ item }) {
         }}
       />
 
-      <div className="relative z-10 flex flex-col h-105">
+      <div className="relative z-10 flex flex-col h-105 md:h-115">
         <div className="flex justify-between items-center mb-3">
           <span className="text-[10px] font-black tracking-[0.2em] uppercase text-blue-500 bg-blue-500/10 px-2 py-1 rounded-md">
             {item.category}
