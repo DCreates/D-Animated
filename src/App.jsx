@@ -13,6 +13,7 @@ import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import ServiceDetail from "./pages/ServiceDetail";
 import Newproduct from "./pages/Newproduct";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   const [isIntroActive, setIsIntroActive] = useState(true);
@@ -39,6 +40,9 @@ function App() {
             }
           />
           
+          {/* About page */}
+          <Route path="/about" element={<AboutUs />} />
+
           {/* Service Detail page */}
           <Route path="/service/:slug" element={<ServiceDetail />} />
           

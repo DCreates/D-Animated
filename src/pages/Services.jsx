@@ -53,7 +53,7 @@ export default function Services() {
           <p className="mb-5 inline-flex items-center rounded-full border border-white/25 px-5 py-2 text-xs font-medium tracking-[0.18em] text-white/90 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_rgba(15,23,42,0.35)]">
             Our Services
           </p>
-          <h2 className="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white md:text-5xl">
+          <h2 className="mx-auto text-5xl md:text-[7rem] font-sans font-bold tracking-tighter mb-8 leading-[0.95] text-white">
             End-to-end digital capabilities built for modern teams.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
@@ -65,7 +65,7 @@ export default function Services() {
           {services.map((service) => (
             <div
               key={service.slug}
-              className="group flex items-center justify-between border-b border-white/70 px-2 py-5 last:border-b-0 sm:px-4 md:py-6"
+              className="group flex items-center font-sans justify-between border-b border-white/70 px-2 py-5 last:border-b-0 sm:px-4 md:py-6"
             >
               <div>
                 <h3 className="text-2xl font-bold leading-none tracking-tight text-white sm:text-3xl md:text-4xl">

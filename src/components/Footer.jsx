@@ -73,7 +73,7 @@ export default function Footer() {
 
         {/* BIG TEXT */}
         <div className="border-t border-white/10 pt-2 mt-1 text-center overflow-hidden">
-          <p className="text-[86px] sm:text-[140px] md:text-[180px] lg:text-[287px] font-semibold leading-none tracking-[1px] bg-gradient-to-b from-blue-600 via-sky-500 to-black text-transparent bg-clip-text select-none">
+          <p className="text-[99px] sm:text-[120px] md:text-[120px] lg:text-[310px] md:text-[7rem] font-sans font-bold tracking-tighter mb-8 leading-[0.85] bg-gradient-to-b from-blue-600 via-sky-500 to-black text-transparent bg-clip-text select-none">
             D-Create
           </p>
         </div>

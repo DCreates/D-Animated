@@ -33,8 +33,7 @@ export default function AiBusinessSection() {
     <section className="relative bg-black px-6 py-15 text-white sm:px-10 lg:px-16 overflow-hidden">
       
       {/* 🔥 Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
-
+      
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         
         {/* LEFT SIDE */}
@@ -86,7 +85,7 @@ export default function AiBusinessSection() {
             Our Core Beliefs
           </p>
 
-          <h2 className="text-3xl font-bold leading-tight md:text-5xl">
+          <h2 className="text-5xl lg:text-[75px] md:text-[7rem] font-sans font-bold tracking-tighter mb-8 leading-[0.95] text-white">
             Built on Security, Trusted by Clients
           </h2>
 
