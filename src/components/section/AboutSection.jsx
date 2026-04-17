@@ -61,16 +61,7 @@ export default function AboutSection() {
       id="about"
       className="relative w-full overflow-hidden bg-black px-6 py-24 sm:px-10 lg:px-16"
     >
-      {/* BACKGROUND GLOW (FIXED - ENABLED) */}
-      <Motion.div
-        style={{ y: bg1 }}
-        className="absolute -left-44 -top-44 h-[600px] w-[600px] rounded-full bg-blue-600/20 blur-[150px]"
-      />
-
-      <Motion.div
-        style={{ y: bg2 }}
-        className="absolute -bottom-44 -right-44 h-[600px] w-[600px] rounded-full bg-cyan-500/20 blur-[150px]"
-      />
+      
 
       <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 gap-14 lg:grid-cols-[1.05fr_0.95fr]">
 
@@ -87,7 +78,7 @@ export default function AboutSection() {
           </p>
 
           <h2 className="text-5xl lg:text-[70px] font-bold tracking-tighter leading-[0.85] text-white mb-6">
-            We build powerful digital experiences
+            We build powerful digital experiences<span className="text-blue-500">.</span>
           </h2>
 
           <p className="text-gray-300 text-lg leading-7 mb-4">

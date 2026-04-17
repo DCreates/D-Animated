@@ -56,10 +56,10 @@ export default function Contact() {
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Project Inquiry</span>
           </div>
           
-          <h2 className="text-5xl md:text-8xl font-semibold tracking-tighter text-white leading-[0.9] max-w-4xl">
+          <h2 className="text-[50px] md:text-8xl font-semibold tracking-tighter text-white leading-[0.9] max-w-4xl">
             Precision. Strategy.<br /> 
             <span className="bg-gradient-to-r from-neutral-100 via-neutral-500 to-neutral-800 bg-clip-text text-transparent">
-              Built for Impact.
+              Built for Impact<span className="text-blue-500">.</span>
             </span>
           </h2>
         </div>
