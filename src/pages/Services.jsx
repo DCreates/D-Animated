@@ -54,7 +54,7 @@ export default function Services() {
             Our Services
           </p>
           <h2 className="mx-auto text-5xl md:text-[7rem] font-sans font-bold tracking-tighter mb-8 leading-[0.95] text-white">
-            End-to-end digital capabilities built for modern teams.
+            End-to-end digital capabilities built for modern teams<span className="text-blue-500">.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
             From product design to cloud delivery, we provide focused service lines that support business growth and technical excellence.

@@ -21,7 +21,7 @@ export default function PremiumTestimonials() {
   }, [isAutoPlaying, testimonials.length]);
 
   return (
-    <section className="min-h-screen bg-[#050505] flex items-center justify-center px-6 py-24 selection:bg-white/30">
+    <section id="testimonials" className="min-h-screen bg-[#050505] flex items-center justify-center px-6 py-24 selection:bg-white/30">
       <div className="w-full max-w-6xl">
         
         {/* Header Section */}
@@ -29,8 +29,8 @@ export default function PremiumTestimonials() {
           <span className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-medium uppercase tracking-[0.2em] text-white/50 mb-6">
             Case Studies
           </span>
-          <h2 className="text-5xl md:text-[7rem] font-sans font-bold tracking-tighter mb-6 leading-[0.85] text-white mb-6">
-            Voices of <span className="text-white/40">Innovation.</span>
+          <h2 className="text-6xl md:text-[7rem] font-sans font-bold tracking-tighter mb-6 leading-[0.85] text-white mb-6">
+            Voices of <span className="text-white/40">Innovation<span className="text-blue-500">.</span></span>
           </h2>
           <p className="text-white/40 text-lg max-w-xl mx-auto font-light leading-relaxed">
             Partnering with world-class teams to redefine digital boundaries through precision and craft.

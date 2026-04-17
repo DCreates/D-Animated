@@ -28,15 +28,15 @@ export default function AboutUs() {
       </section>
 
       {/* ================= COMPANY SNAPSHOT ================= */}
-      <section className="px-6 max-w-6xl mx-auto mb-28">
-        <div className="grid md:grid-cols-4 gap-6 text-center">
+      <section className="px-6 max-w-6xl mx-auto mb-20">
+        <div className="grid md:grid-cols-4 grid-cols-2 gap-6 text-center">
           {[
             { value: "2022", label: "Founded" },
             { value: "10+", label: "Digital Solutions" },
             { value: "Global", label: "Client Reach" },
             { value: "AI Driven", label: "Innovation Focus" }
           ].map((s, i) => (
-            <div key={i} className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+            <div key={i} className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
               <h3 className="text-3xl font-bold text-blue-400">{s.value}</h3>
               <p className="text-zinc-400 mt-2 text-xs uppercase tracking-widest">{s.label}</p>
             </div>
@@ -45,24 +45,25 @@ export default function AboutUs() {
       </section>
 
       {/* ================= LEADERS ================= */}
-      <section className="px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 mb-28">
+      <section className="px-5 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 mb-28">
         {[
           {
-            role: "Chief Executive Officer",
-            name: "Your CEO Name",
-            img: "https://images.unsplash.com/photo-1560250097-0b93528c311a",
-            desc: "Visionary leader shaping strategy, innovation, and global expansion with a focus on scalable digital ecosystems.",
-            edu: "BSc Computer Science • MBA",
+            role: "Co Founder",
+            name: "Mr. Farhath Zimal",
+            img: "/persons/founder.png",
+            desc: "Our Founder Mr. Farhath Zimal is a visionary leader who blends innovation, creativity, and technical expertise to deliver powerful software solutions that drive business success.",
+            edu: "BSc Hons (Cyber Security)",
             skills: "Leadership • Vision • Strategy"
           },
           {
-            role: "Operations Manager",
-            name: "Your Manager Name",
-            img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2",
-            desc: "Ensures operational excellence, delivery quality, and smooth execution across all projects.",
+            role: "Managing Director",
+            name: "Mr. Faham",
+            img: "/persons/manager.jpeg",
+            desc: "Our Managing Director Mr. Faham is a dynamic leader who drives operational excellence and ensures every project is delivered with precision and impact.",
             edu: "BSc IT • PMP Certified",
             skills: "Operations • Execution • Quality"
-          }
+          } 
+          
         ].map((p, i) => (
           <motion.div key={i} whileHover={{ scale: 1.03 }} className="rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02] backdrop-blur-xl">
             <img src={p.img} className="w-full h-[340px] object-cover" />
@@ -103,7 +104,7 @@ export default function AboutUs() {
       <section className="px-6 max-w-6xl mx-auto mb-28">
         <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 grid-cols-2 gap-6">
           {[
             { icon: Globe, title: "Web Development", desc: "High-performance, scalable web applications built with modern frameworks." },
             { icon: Smartphone, title: "Mobile Apps", desc: "Cross-platform iOS & Android apps with seamless UX." },
@@ -116,9 +117,15 @@ export default function AboutUs() {
             { icon: CreditCard, title: "E-Commerce Systems", desc: "Secure online stores and payment integrations." }
           ].map((s, i) => (
             <div key={i} className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:bg-white/[0.04] transition">
-              <s.icon className="text-blue-400 mb-3" size={22} />
-              <h3 className="text-lg font-semibold mb-1">{s.title}</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">{s.desc}</p>
+             <div className="flex gap-4 items-center mb-2">
+                <div>
+                    <s.icon className="text-blue-400 mb-2" size={20} />
+                </div>
+                <div>
+                  <h3 className="text-[13px] font-semibold mb-1">{s.title}</h3>
+                </div>
+             </div>
+              <p className="text-zinc-400 text-[10px] leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -133,9 +140,15 @@ export default function AboutUs() {
             { title: "Excellence", desc: "We deliver premium quality in every project." },
             { title: "Scalability", desc: "We build systems designed for global growth." }
           ].map((v, i) => (
-            <div key={i} className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
-              <ShieldCheck className="text-blue-400 mb-3" />
-              <h3 className="text-xl font-semibold mb-2">{v.title}</h3>
+            <div key={i} className="p-5 rounded-3xl bg-white/[0.02] border border-white/10">
+              <div className="flex gap-4 items-center">
+                <div>
+                     <ShieldCheck className="text-blue-400 mb-3" />
+                </div>
+                <div>
+                     <h3 className="text-xl font-semibold mb-2">{v.title}</h3>
+                </div>
+              </div>
               <p className="text-zinc-400">{v.desc}</p>
             </div>
           ))}

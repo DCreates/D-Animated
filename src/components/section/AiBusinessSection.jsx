@@ -53,13 +53,9 @@ export default function AiBusinessSection() {
                 <div className="flex items-start gap-4">
                   
                   {/* ICON */}
-                  <Motion.div
-                    whileHover={{ scale: 1.2, rotate: -8 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="relative px-5 py-7 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition"
-                  >
-                    <div className="w-15 h-15 rounded-2xl border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] transition">
-                      <Icon className="w-9 h-9 text-white/90" />
+                  <Motion.div>
+                    <div className="w-15 h-17 rounded-2xl border border-white/10 flex items-center justify-center backdrop-blur-md ">
+                      <Icon className="w-8 h-8 text-white/90" />
                     </div>
                   </Motion.div>
 
@@ -81,12 +77,12 @@ export default function AiBusinessSection() {
 
         {/* RIGHT SIDE */}
         <div>
-          <p className="mb-4 inline-flex items-center rounded-full border border-cyan-300/30 bg-white/10 px-5 py-2 text-xs font-medium tracking-[0.18em] text-white backdrop-blur-xl">
+          <p className="mb-4 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-medium tracking-[0.18em] text-white backdrop-blur-xl">
             Our Core Beliefs
           </p>
 
           <h2 className="text-5xl lg:text-[75px] md:text-[7rem] font-sans font-bold tracking-tighter mb-8 leading-[0.95] text-white">
-            Built on Security, Trusted by Clients
+            Built on Security, Trusted by Clients<span className="text-blue-500">.</span>
           </h2>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-slate-300 md:text-lg">

@@ -6,7 +6,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-black pt-6 text-white border-t border-white/10">
+    <footer className="relative font-sans overflow-hidden bg-black pt-6 text-white border-t border-white/10">
 
       <div className="relative mx-auto w-[95%] max-w-7xl">
 
@@ -22,9 +22,10 @@ export default function Footer() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-medium leading-tight text-[#f5f5f7]">
-              Building polished digital products with clarity, speed, and precision.
-            </h2>
+            <h2 className="text-5xl sm:text-4xl font-bold font-sans tracking-tighter mb-4 leading-[0.85] text-[#f5f5f7]">
+              Building polished digital products with clarity, speed, and precision<span className="text-blue-500">.</span>
+          </h2>
+            
 
             <p className="mt-6 text-base text-neutral-500 leading-relaxed">
               Designing intentional experiences from first interaction to final click,
