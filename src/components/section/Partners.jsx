@@ -43,13 +43,18 @@ export default function Partners() {
             <div className="absolute right-0 top-0 h-full w-16 bg-linear-to-l from-black to-transparent z-10 pointer-events-none" />
 
             {/* Scrolling Logos */}
-            <div className="flex w-max animate-scroll gap-12">
+            <div className="flex w-max animate-scroll gap-8 items-center">
               {[...logos, ...logos].map((logo, i) => (
-                <img
+                <div
                   key={i}
-                  src={logo}
-                  className="h-7 md:h-12 lg:h-16 object-contain opacity-70 hover:opacity-100 transition"
-                />
+                  className="flex items-center justify-center w-24 md:w-28 lg:w-32 h-12 md:h-16 lg:h-20 p-2 bg-white/5 rounded-md"
+                >
+                  <img
+                    src={logo}
+                    className="w-full h-full object-contain opacity-80 hover:opacity-100 transition"
+                    alt="client logo"
+                  />
+                </div>
               ))}
             </div>
           </div>
