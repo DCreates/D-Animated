@@ -161,6 +161,7 @@ export default function AboutUs() {
               role: "Co Founder & CEO",
               name: "Mr. Farhath Zimal",
               img: "/persons/founder.png",
+                focalPoint: "50% 16%",
               desc: "A visionary leader who blends innovation, creativity, and technical expertise to deliver powerful software solutions that drive business success.",
               edu: "BSc Hons (Cyber Security)",
               skills: ["Leadership", "Vision", "Strategy"],
@@ -169,6 +170,7 @@ export default function AboutUs() {
               role: "Co Founder & CTO",
               name: "Mr. Faham",
               img: "/persons/manager.jpg",
+                focalPoint: "50% 12%",
               desc: "A dynamic leader who drives operational excellence and ensures every project is delivered with precision and impact.",
               edu: "BICT (Hons) in Network Technology",
               skills: ["Operations", "Execution", "Quality"],
@@ -186,6 +188,7 @@ export default function AboutUs() {
                 <img
                   src={p.img}
                   alt={p.name}
+                  style={{ objectPosition: p.focalPoint }}
                   className="w-full h-[380px] object-cover group-hover:scale-105 transition-transform duration-[1.2s] ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
