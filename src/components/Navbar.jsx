@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import { scrollToSection, useScrollSpy } from "../hook/useScrollSpy.js";
 import { NAV_LINKS } from "../utils/constants.js";

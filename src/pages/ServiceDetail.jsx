@@ -175,12 +175,6 @@ export default function ServiceDetail() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [slug]);
 
-  useEffect(() => {
-    if (currentSlide >= relatedProjects.length) {
-      setCurrentSlide(0);
-    }
-  }, [relatedProjects.length, currentSlide]);
-
   if (!service) {
     return <div className="min-h-screen bg-black" />;
   }
@@ -195,7 +189,9 @@ export default function ServiceDetail() {
     setCurrentSlide((prev) => (prev === 0 ? relatedProjects.length - 1 : prev - 1));
   };
 
-  const currentProject = relatedProjects[currentSlide];
+  const currentProject = relatedProjects.length
+    ? relatedProjects[currentSlide % relatedProjects.length]
+    : null;
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({

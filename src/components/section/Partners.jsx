@@ -1,21 +1,18 @@
 export default function Partners() {
   const logos = [
-    "/logos/logo1.png",
-    "/logos/logo2.png",
-    "/logos/logo3.png",
-    "/logos/logo4.webp",
-    "/logos/logo1.png",
-    "/logos/logo2.png",
-    "/logos/logo3.png",
-    "/logos/logo4.webp",
-    "/logos/logo1.png",
-    "/logos/logo2.png",
-    "/logos/logo3.png",
-    "/logos/logo4.webp",
-    "/logos/logo1.png",
-    "/logos/logo2.png",
-    "/logos/logo3.png",
-    "/logos/logo4.webp",
+    "/logos/sedo.webp",
+    "/logos/globus.png",
+    "/logos/lenspro.png",
+    "/logos/sedo.webp",
+    "/logos/globus.png",
+    "/logos/lenspro.png",
+    "/logos/sedo.webp",
+    "/logos/globus.png",
+    "/logos/lenspro.png",
+    "/logos/sedo.webp",
+    "/logos/globus.png",
+    "/logos/lenspro.png",
+    
   ];
 
   return (
@@ -31,7 +28,7 @@ export default function Partners() {
         {/* Main Container: Our Clients + Marquee */}
         <div className="flex items-center gap-2 lg:gap-12">
           {/* Left: "Our Clients" Text */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <h2 className="text-1xl md:text-2xl lg:text-4xl font-bold text-white/70 whitespace-nowrap">
               Our  Clients | 
             </h2>
@@ -40,10 +37,10 @@ export default function Partners() {
           {/* Right: Marquee */}
           <div className="flex-1 relative overflow-hidden">
             {/* ✅ LEFT FADE */}
-            <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 h-full w-16 bg-linear-to-r from-black to-transparent z-10 pointer-events-none" />
 
             {/* ✅ RIGHT FADE */}
-            <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 h-full w-16 bg-linear-to-l from-black to-transparent z-10 pointer-events-none" />
 
             {/* Scrolling Logos */}
             <div className="flex w-max animate-scroll gap-12">
