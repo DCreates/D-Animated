@@ -168,7 +168,7 @@ export default function AboutUs() {
             },
             {
               role: "Co Founder & CTO",
-              name: "Mr. Faham",
+              name: "Mr. Faham Fahim",
               img: "/persons/manager.jpg",
                 focalPoint: "50% 12%",
               desc: "A dynamic leader who drives operational excellence and ensures every project is delivered with precision and impact.",
