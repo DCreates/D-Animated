@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion as Motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import { scrollToSection, useScrollSpy } from "../hook/useScrollSpy.js";
 import { NAV_LINKS } from "../utils/constants.js";
@@ -90,7 +91,7 @@ const Navbar = () => {
       }`}
     >
       <div
-        className={`w-[95%] max-w-[1420px] max-h-[50px] flex items-center justify-between px-7 py-3 rounded-3xl border transition-all duration-300 ${
+        className={`w-[95%] max-w-355 max-h-12.5 flex items-center justify-between px-7 py-3 rounded-3xl border transition-all duration-300 ${
           isScrolled
             ? "bg-black/50 backdrop-blur-md shadow-md border-gray-700"
             : "bg-black border-gray-900"
@@ -107,7 +108,7 @@ const Navbar = () => {
           }}
           className="text-2xl font-bold text-cyan-400"
         >
-          <motion.img
+          <Motion.img
             layoutId="brand-logo"
             src="/images/d lg.svg"
             alt="Globus Logo"
@@ -158,13 +159,13 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`absolute top-full w-[95%] max-w-[1320px] md:hidden transition-all duration-300 overflow-hidden ${
+        className={`absolute top-full w-[95%] max-w-330 md:hidden transition-all duration-300 overflow-hidden ${
           isMenuOpen
-            ? "rounded-2xl max-h-98 opacity-100 mt-[-8px]"
+            ? "rounded-2xl max-h-98 opacity-100 -mt-2"
             : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-black/50 backdrop-blur-md shadow-md rounded-2xl shadow-lg border border-gray-700 p-6 space-y-3">
+        <div className="bg-black/50 backdrop-blur-md shadow-lg rounded-2xl border border-gray-700 p-6 space-y-3">
           {NAV_LINKS.map((link) => (
             <button
               key={link.id}
@@ -181,7 +182,7 @@ const Navbar = () => {
 
           <button
             onClick={() => handleNavClick("contact")}
-            className="w-full mt-0 px-5 py-2 rounded-full border border-x-cyan-300/80 bg-white/10 backdrop-blur rounded-full text-white font-semibold hover:opacity-70"
+            className="w-full mt-0 px-5 py-2 rounded-full border border-x-cyan-300/80 bg-white/10 backdrop-blur text-white font-semibold hover:opacity-70"
           >
             Get in Touch
           </button>
