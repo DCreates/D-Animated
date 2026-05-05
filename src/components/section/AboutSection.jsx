@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion as Motion, useScroll, useTransform } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 //////////////////// FORMAT ////////////////////
@@ -51,10 +51,6 @@ const Counter = ({ target, suffix }) => {
 //////////////////// MAIN COMPONENT ////////////////////
 export default function AboutSection() {
   const navigate = useNavigate(); // ✅ FIXED: moved inside component
-
-  const { scrollY } = useScroll();
-  const bg1 = useTransform(scrollY, [0, 600], [0, 60]);
-  const bg2 = useTransform(scrollY, [0, 600], [0, -40]);
 
   return (
     <section

@@ -16,7 +16,7 @@ export default function Footer() {
           {/* LEFT: Brand */}
           <div className="max-w-xl">
             <div className="flex items-center gap-3 mb-3">
-              <div className="h-[1px] w-8 bg-neutral-700"></div>
+              <div className="h-px w-8 bg-neutral-700"></div>
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-500">
                 Studio Philosophy
               </span>
@@ -56,7 +56,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.2em] text-neutral-300">
             <p>© 2026 D Create</p>
-            <span className="h-3 w-[1px] bg-neutral-400"></span>
+            <span className="h-3 w-px bg-neutral-400"></span>
             <p>All Rights Reserved</p>
           </div>
 
@@ -74,7 +74,7 @@ export default function Footer() {
 
         {/* BIG TEXT */}
         <div className="border-t border-white/10 pt-2 mt-1 text-center overflow-hidden">
-          <p className="text-[90px] sm:text-[120px] md:text-[110px] lg:text-[310px] md:text-[7rem] font-sans font-bold tracking-tighter mb-8 leading-[0.85] bg-gradient-to-b from-blue-600 via-sky-500 to-black text-transparent bg-clip-text select-none">
+          <p className="text-[90px] sm:text-[120px] md:text-[110px] lg:text-[310px] font-sans font-bold tracking-tighter mb-8 leading-[0.85] bg-linear-to-b from-blue-600 via-sky-500 to-black text-transparent bg-clip-text select-none">
             D-Create
           </p>
         </div>

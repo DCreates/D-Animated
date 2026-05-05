@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { projects } from "../data/projects";
 
 // Synced with Services categories
@@ -27,27 +27,16 @@ export default function Projects() {
 
   // Pagination count
   const pageCount = Math.max(1, Math.ceil(filteredProjects.length / PAGE_SIZE));
-
-  // Reset page if filter changes
-  useEffect(() => {
-    setPageIndex(0);
-  }, [activeFilter]);
-
-  // Prevent overflow page index
-  useEffect(() => {
-    if (pageIndex >= pageCount) {
-      setPageIndex(pageCount - 1);
-    }
-  }, [pageCount, pageIndex]);
+  const safePageIndex = Math.min(pageIndex, pageCount - 1);
 
   // Visible projects
   const visibleProjects = filteredProjects.slice(
-    pageIndex * PAGE_SIZE,
-    pageIndex * PAGE_SIZE + PAGE_SIZE
+    safePageIndex * PAGE_SIZE,
+    safePageIndex * PAGE_SIZE + PAGE_SIZE
   );
 
-  const canGoPrev = pageIndex > 0;
-  const canGoNext = pageIndex < pageCount - 1;
+  const canGoPrev = safePageIndex > 0;
+  const canGoNext = safePageIndex < pageCount - 1;
 
   return (
     <section
@@ -76,7 +65,10 @@ export default function Projects() {
               <button
                 key={filter}
                 type="button"
-                onClick={() => setActiveFilter(filter)}
+                onClick={() => {
+                  setActiveFilter(filter);
+                  setPageIndex(0);
+                }}
                 className={`inline-flex items-center gap-2 rounded-full border px-5 py-2 text-sm font-medium transition ${
                   isActive
                     ? "border-white/65 bg-white/20 text-white shadow-[0_0_14px_rgba(255,255,255,0.22)]"
@@ -200,7 +192,7 @@ export default function Projects() {
               type="button"
               onClick={() => setPageIndex(index)}
               className={`h-2.5 rounded-full transition-all ${
-                index === pageIndex
+                index === safePageIndex
                   ? "w-8 bg-white"
                   : "w-2.5 bg-white/25 hover:bg-white/45"
               }`}

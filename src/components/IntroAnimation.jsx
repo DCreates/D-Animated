@@ -21,8 +21,6 @@ export default function IntroAnimation({ onFinish }) {
     };
   }, [onFinish]);
 
-  const isOutline = phase === "outline";
-  const shouldShowOutline = phase === "outline" || phase === "fill";
   const shouldShowFill = phase !== "outline";
 
   return (

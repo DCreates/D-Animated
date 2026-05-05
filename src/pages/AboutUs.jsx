@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion as Motion, useScroll, useTransform } from "framer-motion";
 import { Download, ArrowRight, Globe, Smartphone, Palette, TrendingUp, Cloud, Cpu, Sparkles, Gift, ShieldCheck, CreditCard, Layers, ChevronDown } from "lucide-react";
 import { useRef } from "react";
 
@@ -38,23 +38,23 @@ export default function AboutUs() {
       </div>
 
       {/* ================= HERO ================= */}
-      <motion.section
+      <Motion.section
         ref={heroRef}
         style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
         className="relative text-center px-6 pt-32 pb-32 md:pt-44 md:pb-40 max-w-7xl mx-auto"
       >
-        <motion.div
+        <Motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
           className="relative z-10"
         >
-          <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm mb-8">
+          <Motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm mb-8">
             <Sparkles size={14} className="text-blue-400" />
             <span className="text-xs text-zinc-400 tracking-wide">Digital Innovation Studio</span>
-          </motion.div>
+          </Motion.div>
 
-          <motion.h1
+          <Motion.h1
             variants={fadeUp}
             custom={1}
             className="text-[clamp(2.8rem,8vw,7.5rem)] font-extrabold tracking-[-0.04em] leading-[0.88] mb-8"
@@ -67,9 +67,9 @@ export default function AboutUs() {
               Digital Futures
             </span>
             <span className="text-blue-400">.</span>
-          </motion.h1>
+          </Motion.h1>
 
-          <motion.p
+          <Motion.p
             variants={fadeUp}
             custom={2}
             className="text-zinc-500 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-light"
@@ -77,9 +77,9 @@ export default function AboutUs() {
             Founded in 2022, we evolved from a creative studio into a full-scale
             digital transformation company delivering intelligent, scalable and
             modern business ecosystems worldwide.
-          </motion.p>
+          </Motion.p>
 
-          <motion.div variants={fadeUp} custom={3} className="mt-10 flex items-center justify-center gap-4">
+          <Motion.div variants={fadeUp} custom={3} className="mt-10 flex items-center justify-center gap-4">
             <button className="group px-8 py-3.5 bg-white text-black rounded-full font-semibold text-sm flex items-center gap-2 hover:bg-blue-500 hover:text-white transition-all duration-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.3)]">
               Get Started
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -87,27 +87,27 @@ export default function AboutUs() {
             <button className="px-8 py-3.5 rounded-full font-semibold text-sm border border-white/10 text-zinc-300 hover:border-white/25 hover:text-white transition-all duration-500 backdrop-blur-sm">
               Our Work
             </button>
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
 
         {/* Scroll indicator */}
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <motion.div
+          <Motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           >
             <ChevronDown size={20} className="text-zinc-600" />
-          </motion.div>
-        </motion.div>
-      </motion.section>
+          </Motion.div>
+        </Motion.div>
+      </Motion.section>
 
       {/* ================= COMPANY SNAPSHOT ================= */}
-      <motion.section
+      <Motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -121,7 +121,7 @@ export default function AboutUs() {
             { value: "Global", label: "Client Reach" },
             { value: "AI", label: "Innovation Focus" },
           ].map((s, i) => (
-            <motion.div
+            <Motion.div
               key={i}
               variants={fadeUp}
               custom={i}
@@ -135,46 +135,48 @@ export default function AboutUs() {
               <p className="text-zinc-500 mt-3 text-[11px] uppercase tracking-[0.2em] font-medium relative z-10">
                 {s.label}
               </p>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* ================= LEADERS ================= */}
-      <motion.section
+      <Motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
         className="px-6 max-w-6xl mx-auto mb-40"
       >
-        <motion.div variants={fadeUp} className="text-center mb-16">
+        <Motion.div variants={fadeUp} className="text-center mb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-blue-400 mb-4 font-medium">Leadership</p>
           <h2 className="text-5xl md:text-6xl font-bold tracking-[-0.03em] bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
             Visionary Minds
           </h2>
-        </motion.div>
+        </Motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {[
             {
-              role: "Co Founder",
+              role: "Co Founder & CEO",
               name: "Mr. Farhath Zimal",
               img: "/persons/founder.png",
+                focalPoint: "50% 16%",
               desc: "A visionary leader who blends innovation, creativity, and technical expertise to deliver powerful software solutions that drive business success.",
               edu: "BSc Hons (Cyber Security)",
               skills: ["Leadership", "Vision", "Strategy"],
             },
             {
-              role: "Managing Director",
-              name: "Mr. Faham",
-              img: "/persons/manager.jpeg",
+              role: "Co Founder & CTO",
+              name: "Mr. Faham Fahim",
+              img: "/persons/manager.jpg",
+                focalPoint: "50% 12%",
               desc: "A dynamic leader who drives operational excellence and ensures every project is delivered with precision and impact.",
-              edu: "BSc IT • PMP Certified",
+              edu: "BICT (Hons) in Network Technology",
               skills: ["Operations", "Execution", "Quality"],
             },
           ].map((p, i) => (
-            <motion.div
+            <Motion.div
               key={i}
               variants={fadeUp}
               custom={i}
@@ -186,6 +188,7 @@ export default function AboutUs() {
                 <img
                   src={p.img}
                   alt={p.name}
+                  style={{ objectPosition: p.focalPoint }}
                   className="w-full h-[380px] object-cover group-hover:scale-105 transition-transform duration-[1.2s] ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -214,25 +217,25 @@ export default function AboutUs() {
                   <Download size={14} className="group-hover/btn:translate-y-0.5 transition-transform duration-300" />
                 </button>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* ================= STORY / TIMELINE ================= */}
-      <motion.section
+      <Motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
         className="px-6 max-w-5xl mx-auto mb-40"
       >
-        <motion.div variants={fadeUp} className="text-center mb-16">
+        <Motion.div variants={fadeUp} className="text-center mb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-blue-400 mb-4 font-medium">Timeline</p>
           <h2 className="text-5xl md:text-6xl font-bold tracking-[-0.03em] bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
             Our Journey
           </h2>
-        </motion.div>
+        </Motion.div>
 
         <div className="relative">
           {/* Timeline line */}
@@ -260,7 +263,7 @@ export default function AboutUs() {
               desc: "Our mission is to help businesses scale globally through intelligent technology and innovation.",
             },
           ].map((item, i) => (
-            <motion.div
+            <Motion.div
               key={i}
               variants={fadeUp}
               custom={i}
@@ -281,25 +284,25 @@ export default function AboutUs() {
                 <h3 className="text-xl font-bold mt-1 mb-2">{item.title}</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* ================= SERVICES ================= */}
-      <motion.section
+      <Motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
         className="px-6 max-w-6xl mx-auto mb-40"
       >
-        <motion.div variants={fadeUp} className="text-center mb-16">
+        <Motion.div variants={fadeUp} className="text-center mb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-blue-400 mb-4 font-medium">What We Do</p>
           <h2 className="text-5xl md:text-6xl font-bold tracking-[-0.03em] bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
             Our Services
           </h2>
-        </motion.div>
+        </Motion.div>
 
         <div className="grid md:grid-cols-3 gap-4">
           {[
@@ -313,7 +316,7 @@ export default function AboutUs() {
             { icon: Layers, title: "Business Systems", desc: "Enterprise-grade solutions for business process optimization." },
             { icon: CreditCard, title: "E-Commerce", desc: "Secure online stores with seamless payment integrations." },
           ].map((s, i) => (
-            <motion.div
+            <Motion.div
               key={i}
               variants={fadeUp}
               custom={i}
@@ -328,25 +331,25 @@ export default function AboutUs() {
                 <h3 className="text-base font-semibold mb-2 tracking-[-0.01em]">{s.title}</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* ================= VALUES ================= */}
-      <motion.section
+      <Motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
         className="px-6 max-w-6xl mx-auto mb-40"
       >
-        <motion.div variants={fadeUp} className="text-center mb-16">
+        <Motion.div variants={fadeUp} className="text-center mb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-blue-400 mb-4 font-medium">Foundation</p>
           <h2 className="text-5xl md:text-6xl font-bold tracking-[-0.03em] bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
             Core Values
           </h2>
-        </motion.div>
+        </Motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {[
@@ -369,7 +372,7 @@ export default function AboutUs() {
               gradient: "from-amber-500/20 to-orange-500/20",
             },
           ].map((v, i) => (
-            <motion.div
+            <Motion.div
               key={i}
               variants={fadeUp}
               custom={i}
@@ -386,13 +389,13 @@ export default function AboutUs() {
                 <h3 className="text-2xl font-bold mb-3 tracking-[-0.02em]">{v.title}</h3>
                 <p className="text-zinc-400 leading-relaxed">{v.desc}</p>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* ================= CTA ================= */}
-      <motion.section
+      <Motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -407,10 +410,10 @@ export default function AboutUs() {
             {/* Inner glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
-            <motion.p variants={fadeUp} className="text-xs uppercase tracking-[0.3em] text-blue-400 mb-6 font-medium">
+            <Motion.p variants={fadeUp} className="text-xs uppercase tracking-[0.3em] text-blue-400 mb-6 font-medium">
               Start Your Journey
-            </motion.p>
-            <motion.h2
+            </Motion.p>
+            <Motion.h2
               variants={fadeUp}
               custom={1}
               className="text-4xl md:text-6xl font-bold tracking-[-0.03em] mb-6 bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent leading-tight"
@@ -418,19 +421,19 @@ export default function AboutUs() {
               Let's Build Something
               <br />
               Powerful Together
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="text-zinc-500 mb-10 max-w-lg mx-auto text-lg">
+            </Motion.h2>
+            <Motion.p variants={fadeUp} custom={2} className="text-zinc-500 mb-10 max-w-lg mx-auto text-lg">
               Ready to transform your business with intelligent technology? Let's talk.
-            </motion.p>
-            <motion.div variants={fadeUp} custom={3}>
+            </Motion.p>
+            <Motion.div variants={fadeUp} custom={3}>
               <button className="group px-10 py-4 bg-white text-black rounded-full font-semibold text-sm flex items-center gap-3 mx-auto hover:bg-blue-500 hover:text-white transition-all duration-500 hover:shadow-[0_0_60px_rgba(59,130,246,0.3)] hover:scale-105">
                 Get Started
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
               </button>
-            </motion.div>
+            </Motion.div>
           </div>
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* ================= FOOTER ACCENT ================= */}
       <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

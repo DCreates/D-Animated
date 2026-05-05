@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion as Motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Zap, Command } from "lucide-react";
 import { products } from "../data/products.js";
 
@@ -29,7 +29,7 @@ export default function PremiumUI() {
         <div className="max-w-7xl mx-auto flex flex-col items-center">
           
           {/* HEADER CONTENT */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -51,7 +51,7 @@ export default function PremiumUI() {
               Standardized infrastructure for world-class engineering teams. 
               Precision tools for modern deployment.
             </p>
-          </motion.div>
+          </Motion.div>
 
           {/* CAROUSEL UNIT */}
           <div className="relative w-full max-w-6xl flex flex-col items-center">
@@ -65,7 +65,7 @@ export default function PremiumUI() {
               {/* ACTIVE FOCUS CARD */}
               <div className="w-full max-w-[500px] perspective-[2000px] z-10">
                 <AnimatePresence mode="wait" custom={direction}>
-                  <motion.div
+                  <Motion.div
                     key={index}
                     custom={direction}
                     initial={{ opacity: 0, x: direction * 40, scale: 0.98 }}
@@ -74,7 +74,7 @@ export default function PremiumUI() {
                     transition={{ duration: 0.4, ease: "circOut" }}
                   >
                     <InteractiveCard item={getCard(0)} />
-                  </motion.div>
+                  </Motion.div>
                 </AnimatePresence>
               </div>
 
@@ -155,7 +155,7 @@ function InteractiveCard({ item }) {
   };
 
   return (
-    <motion.div
+      <Motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { setRotateX(0); setRotateY(0); setGlow({ ...glow, opacity: 0 }); }}
@@ -213,7 +213,7 @@ function InteractiveCard({ item }) {
           </button>
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 }
 
